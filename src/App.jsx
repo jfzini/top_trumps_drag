@@ -145,22 +145,23 @@ class App extends React.Component {
             ({
               cardName: savedName,
               cardDescription: savedDescription,
-              cardAttr1:,
-              cardAttr2:,
-              cardAttr3:,
-              cardImage:,
-              cardRare:,
-              cardTrunfo:,
+              cardAttr1: savedAttr1,
+              cardAttr2: savedAttr2,
+              cardAttr3: savedAttr3,
+              cardImage: savedImage,
+              cardRare: savedRare,
+              cardTrunfo: savedTrunfo,
             }) => (
               <Card
-                cardName={ cardName }
-                cardDescription={ cardDescription }
-                cardAttr1={ cardAttr1 }
-                cardAttr2={ cardAttr2 }
-                cardAttr3={ cardAttr3 }
-                cardImage={ cardImage }
-                cardRare={ cardRare }
-                cardTrunfo={ cardTrunfo }
+                key={ savedName }
+                cardName={ savedName }
+                cardDescription={ savedDescription }
+                cardAttr1={ savedAttr1 }
+                cardAttr2={ savedAttr2 }
+                cardAttr3={ savedAttr3 }
+                cardImage={ savedImage }
+                cardRare={ savedRare }
+                cardTrunfo={ savedTrunfo }
               />
             ),
           )}
