@@ -13,7 +13,6 @@ class App extends React.Component {
     cardRare: 'normal',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
-    savedCard: {},
     savedCardsArr: [],
   };
 
@@ -74,8 +73,18 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      savedCard,
     } = this.state;
+
+    const savedCard= {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    };
 
     this.setState({
       cardName: '',
@@ -86,16 +95,7 @@ class App extends React.Component {
       cardImage: '',
       cardRare: 'normal',
       isSaveButtonDisabled: true,
-      savedCard: {
-        cardName,
-        cardDescription,
-        cardAttr1,
-        cardAttr2,
-        cardAttr3,
-        cardImage,
-        cardRare,
-        cardTrunfo,
-      },
+      savedCardsArr: [savedCard]
     });
   };
 
@@ -114,7 +114,7 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
       isSaveButtonDisabled,
-      savedCard,
+      savedCardsArr,
     } = this.state;
 
     return (
