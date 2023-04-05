@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Input from './Input';
 
 class Form extends Component {
   render() {
@@ -19,15 +20,12 @@ class Form extends Component {
 
     return (
       <form action="name-input">
-        <label htmlFor="">
-          <input
-            type="text"
-            data-testid="name-input"
-            id="name-input"
-            value={ cardName }
-            onChange={ onInputChange }
-          />
-        </label>
+        <Input
+          id="name-input"
+          type="text"
+          value={ cardName }
+          onChange={ onInputChange }
+        />
         <label htmlFor="description-input">
           <textarea
             name=""
@@ -39,46 +37,30 @@ class Form extends Component {
             onChange={ onInputChange }
           />
         </label>
-        <label htmlFor="attr1-input">
-          <input
-            type="number"
-            name=""
-            id="attr1-input"
-            data-testid="attr1-input"
-            value={ cardAttr1 }
-            onChange={ onInputChange }
-          />
-        </label>
-        <label htmlFor="attr2-input">
-          <input
-            type="number"
-            name=""
-            id="attr2-input"
-            data-testid="attr2-input"
-            value={ cardAttr2 }
-            onChange={ onInputChange }
-          />
-        </label>
-        <label htmlFor="attr3-input">
-          <input
-            type="number"
-            name=""
-            id="attr3-input"
-            data-testid="attr3-input"
-            value={ cardAttr3 }
-            onChange={ onInputChange }
-          />
-        </label>
-        <label htmlFor="image-input">
-          <input
-            type="text"
-            name=""
-            id="image-input"
-            data-testid="image-input"
-            value={ cardImage }
-            onChange={ onInputChange }
-          />
-        </label>
+        <Input
+          id="attr1-input"
+          type="number"
+          value={ cardAttr1 }
+          onChange={ onInputChange }
+        />
+        <Input
+          id="attr2-input"
+          type="number"
+          value={ cardAttr2 }
+          onChange={ onInputChange }
+        />
+        <Input
+          id="attr3-input"
+          type="number"
+          value={ cardAttr3 }
+          onChange={ onInputChange }
+        />
+        <Input
+          id="image-input"
+          type="text"
+          value={ cardImage }
+          onChange={ onInputChange }
+        />
         <label htmlFor="rare-input">
           <select
             name=""
@@ -92,16 +74,12 @@ class Form extends Component {
             <option value="muito raro">muito raro</option>
           </select>
         </label>
-        <label htmlFor="trunfo-input">
-          <input
-            type="checkbox"
-            name=""
-            id="trunfo-input"
-            data-testid="trunfo-input"
-            checked={ cardTrunfo }
-            onChange={ onInputChange }
-          />
-        </label>
+        <Input
+          id="trunfo-input"
+          type="checkbox"
+          checked={ cardTrunfo }
+          onChange={ onInputChange }
+        />
         <label htmlFor="save-button">
           <button
             data-testid="save-button"
