@@ -19,7 +19,7 @@ class Form extends Component {
     } = this.props;
 
     return (
-      <form action="name-input">
+      <form action="" className="container__column">
         <Input
           id="name-input"
           type="text"
