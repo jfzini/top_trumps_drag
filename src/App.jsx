@@ -13,7 +13,8 @@ class App extends React.Component {
     cardRare: 'normal',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
-    savedCards: {},
+    savedCard: {},
+    savedCardsArr: [],
   };
 
   validateText = () => {
@@ -73,6 +74,7 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      savedCard,
     } = this.state;
 
     this.setState({
@@ -84,7 +86,7 @@ class App extends React.Component {
       cardImage: '',
       cardRare: 'normal',
       isSaveButtonDisabled: true,
-      savedCards: {
+      savedCard: {
         cardName,
         cardDescription,
         cardAttr1,
@@ -97,6 +99,10 @@ class App extends React.Component {
     });
   };
 
+  renderSavedCard = () => {
+    
+  }
+
   render() {
     const {
       cardName,
@@ -108,36 +114,61 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
       isSaveButtonDisabled,
-      savedCards,
+      savedCard,
     } = this.state;
 
     return (
       <div>
         <h1>Tryunfo</h1>
         <Form
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          hasTrunfo={ false }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
-          onInputChange={ this.handleChange }
-          onSaveButtonClick={ this.handleClick }
+          cardName={cardName}
+          cardDescription={cardDescription}
+          cardAttr1={cardAttr1}
+          cardAttr2={cardAttr2}
+          cardAttr3={cardAttr3}
+          cardImage={cardImage}
+          cardRare={cardRare}
+          cardTrunfo={cardTrunfo}
+          hasTrunfo={false}
+          isSaveButtonDisabled={isSaveButtonDisabled}
+          onInputChange={this.handleChange}
+          onSaveButtonClick={this.handleClick}
         />
         <Card
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
+          cardName={cardName}
+          cardDescription={cardDescription}
+          cardAttr1={cardAttr1}
+          cardAttr2={cardAttr2}
+          cardAttr3={cardAttr3}
+          cardImage={cardImage}
+          cardRare={cardRare}
+          cardTrunfo={cardTrunfo}
         />
+        <div>
+          {savedCardsArr.map(
+            ({
+              cardName,
+              cardDescription,
+              cardAttr1,
+              cardAttr2,
+              cardAttr3,
+              cardImage,
+              cardRare,
+              cardTrunfo,
+            }) => (
+              <Card
+                cardName={cardName}
+                cardDescription={cardDescription}
+                cardAttr1={cardAttr1}
+                cardAttr2={cardAttr2}
+                cardAttr3={cardAttr3}
+                cardImage={cardImage}
+                cardRare={cardRare}
+                cardTrunfo={cardTrunfo}
+              />
+            ),
+          )}
+        </div>
       </div>
     );
   }
