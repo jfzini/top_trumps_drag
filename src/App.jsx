@@ -10,15 +10,14 @@ class App extends React.Component {
     cardAttr2: '',
     cardAttr3: '',
     cardImage: '',
-    cardRare: '',
+    cardRare: 'normal',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
+    savedCards: {},
   };
 
   validateText = () => {
-    const { cardName,
-      cardDescription,
-      cardImage } = this.state;
+    const { cardName, cardDescription, cardImage } = this.state;
 
     const validateName = cardName.length > 0;
     const validateDescription = cardDescription.length > 0;
@@ -28,11 +27,7 @@ class App extends React.Component {
   };
 
   validateAttr = () => {
-    const {
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-    } = this.state;
+    const { cardAttr1, cardAttr2, cardAttr3 } = this.state;
     // power limits for each attribute
     const powerLimit = 90;
     const sumPowerLimit = 210;
@@ -59,9 +54,47 @@ class App extends React.Component {
   handleChange = ({ target }) => {
     const { name } = target;
     const value = name === 'cardTrunfo' ? target.checked : target.value;
+    this.setState(
+      {
+        [name]: value,
+      },
+      this.validateFields,
+    );
+  };
+
+  handleClick = (event) => {
+    event.preventDefault();
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    } = this.state;
+
     this.setState({
-      [name]: value,
-    }, this.validateFields);
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardImage: '',
+      cardRare: 'normal',
+      isSaveButtonDisabled: true,
+      savedCards: {
+        cardName,
+        cardDescription,
+        cardAttr1,
+        cardAttr2,
+        cardAttr3,
+        cardImage,
+        cardRare,
+        cardTrunfo,
+      },
+    });
   };
 
   render() {
@@ -75,6 +108,7 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
       isSaveButtonDisabled,
+      savedCards,
     } = this.state;
 
     return (

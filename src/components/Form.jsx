@@ -67,7 +67,7 @@ class Form extends Component {
         <Input
           id="image-input"
           name="cardImage"
-          label="Imagem"
+          label="URL da imagem"
           type="text"
           value={ cardImage }
           onChange={ onInputChange }
