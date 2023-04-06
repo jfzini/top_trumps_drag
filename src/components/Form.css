@@ -1,11 +1,13 @@
 .creation__form {
-  background-color: rgb(206, 132, 248);
-  border: 5px solid rgb(253, 0, 241);
+  background-color: rgb(78, 49, 95);
+  border: 8px solid rgb(253, 0, 241);
   border-radius: 20px;
   box-shadow: 2px 2px 10px black , inset 0 0 3px rgb(7, 0, 17);
-  height: 500px;
+  color: white;
+  font-size: 1rem;
+  height: 580px;
   padding: 20px;
-  width: 350px;
+  width: 380px;
 }
 
 .creation__input {
@@ -15,11 +17,36 @@
 .creation__input input, textarea, select {
   border: none;
   border-radius: 5px;
-  box-shadow: 1px 1px 3px black;
+  box-shadow: 1px 1px 5px black;
   padding: 5px 10px;
   resize: none;
 }
 
 .creation__input textarea {
   height: 100px;
+}
+
+.save__button {
+  background-color: rgb(253, 0, 241);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 8px black;
+  color: white;
+  font-size: 1rem;
+  margin: 10px;
+  padding: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.save__button:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.save__button:active {
+  transform: scale(1.05) translateY(3px);
+}
+
+.save__button:disabled {
+  background-color: gray;
 }

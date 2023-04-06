@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './Form.css'
+import './Form.css';
+import './Card.css';
 
 class Card extends Component {
   render() {
@@ -16,15 +17,43 @@ class Card extends Component {
     } = this.props;
 
     return (
-      <div className='creation__form'>
-        <p data-testid="name-card">{cardName}</p>
-        <img src={ cardImage } alt={ cardName } data-testid="image-card" />
+      <div className="creation__form card__container">
+        <p data-testid="name-card" className="card__name">
+          {cardName}
+        </p>
+        <div className="card__img--container">
+          <img src={cardImage} alt={cardName} data-testid="image-card" className="card__img" />
+        </div>
         <p data-testid="description-card">{cardDescription}</p>
-        <p data-testid="attr1-card">{cardAttr1}</p>
-        <p data-testid="attr2-card">{cardAttr2}</p>
-        <p data-testid="attr3-card">{cardAttr3}</p>
-        <p data-testid="rare-card">{cardRare}</p>
-        {cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : null}
+        <div>
+          <p data-testid="attr1-card" className="card__attr">
+            {cardAttr1}
+          </p>
+        </div>
+        <div>
+          <p data-testid="attr2-card" className="card__attr">
+            {cardAttr2}
+          </p>
+        </div>
+        <div>
+          <p data-testid="attr3-card" className="card__attr">
+            {cardAttr3}
+          </p>
+        </div>
+        <div>
+          <img src="" alt="" />
+          <p className="card__attr">
+            {cardAttr3}
+          </p>
+        </div>
+        <p data-testid="rare-card" className="card__rare">
+          {cardRare}
+        </p>
+        {cardTrunfo ? (
+          <p data-testid="trunfo-card" className="card__trunfo">
+            Super Trunfo
+          </p>
+        ) : null}
       </div>
     );
   }

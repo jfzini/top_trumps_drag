@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './Form.css'
+import './Form.css';
 
 class Input extends Component {
   render() {
     const { id, label, name, type, value, checked, onChange } = this.props;
 
     return (
-      <label htmlFor={ id } className='creation__input container__column'>
+      <label htmlFor={ id } className="creation__input container__column">
         {' '}
         { label }
         <input

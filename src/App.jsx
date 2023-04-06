@@ -134,7 +134,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Tryunfo</h1>
-        <div className='creation__container'>
+        <div className="creation__container">
           <Form
             cardName={ cardName }
             cardDescription={ cardDescription }
@@ -160,7 +160,7 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
           />
         </div>
-        <div>
+        <div className='deck__container'>
           {savedCardsArr.map(
             (
               {

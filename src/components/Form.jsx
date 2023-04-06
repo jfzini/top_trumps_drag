@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Input from './Input';
-import './Form.css'
+import './Form.css';
 
 class Form extends Component {
   render() {
@@ -30,7 +30,7 @@ class Form extends Component {
           value={ cardName }
           onChange={ onInputChange }
         />
-        <label htmlFor="description-input" className='container__column creation__input'>
+        <label htmlFor="description-input" className="container__column creation__input">
           Descrição
           <textarea
             name="cardDescription"
@@ -74,7 +74,7 @@ class Form extends Component {
           value={ cardImage }
           onChange={ onInputChange }
         />
-        <label htmlFor="rare-input" className='container__column creation__input'>
+        <label htmlFor="rare-input" className="container__column creation__input">
           Raridade
           <select
             name="cardRare"
@@ -100,17 +100,15 @@ class Form extends Component {
               onChange={ onInputChange }
             />
           )}
-
-        <label htmlFor="save-button">
-          <button
-            data-testid="save-button"
-            id="save-button"
-            disabled={ isSaveButtonDisabled }
-            onClick={ onSaveButtonClick }
-          >
-            Salvar
-          </button>
-        </label>
+        <button
+          data-testid="save-button"
+          id="save-button"
+          disabled={ isSaveButtonDisabled }
+          onClick={ onSaveButtonClick }
+          className="save__button"
+        >
+          Salvar
+        </button>
       </form>
     );
   }
