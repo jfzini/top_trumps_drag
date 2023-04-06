@@ -16,6 +16,7 @@ class Card extends Component {
       cardAttr1,
       cardAttr2,
       cardAttr3,
+      cardAttr4,
       cardImage,
       cardRare,
       cardTrunfo,
@@ -34,34 +35,38 @@ class Card extends Component {
             className="card__img"
           />
         </div>
-        <p data-testid="description-card">{cardDescription}</p>
-        <div className="attr__container">
-          <div className="attr">
-            <img src={ cImage } alt="charisma" className="attr__img" />
-            <p data-testid="attr1-card" className="card__attr">
+        <p data-testid="description-card" className='card__description'>
+          {cardDescription}
+        </p>
+        <div className="card__attr--container">
+          <div className="card__attr">
+            <img src={ cImage } alt="charisma" className="card__attr--img" />
+            <p data-testid="attr1-card">
               {cardAttr1}
             </p>
           </div>
-          <div className="attr">
-            <img src={ uImage } alt="uniqueness" className="attr__img" />
-            <p data-testid="attr2-card" className="card__attr">
+          <div className="card__attr">
+            <img src={ uImage } alt="uniqueness" className="card__attr--img" />
+            <p data-testid="attr2-card">
               {cardAttr2}
             </p>
           </div>
-          <div className="attr">
-            <img src={ nImage } alt="nerve" className="attr__img" />
-            <p data-testid="attr3-card" className="card__attr">
+          <div className="card__attr">
+            <img src={ nImage } alt="nerve" className="card__attr--img" />
+            <p data-testid="attr3-card">
               {cardAttr3}
             </p>
           </div>
-          <div className="attr">
-            <img src={ tImage } alt="talent" className="attr__img" />
-            <p className="card__attr">{cardAttr3}</p>
+          <div className="card__attr">
+            <img src={ tImage } alt="talent" className={"card__attr--img" }/>
+            <p >{cardAttr4}</p>
           </div>
         </div>
-        <p data-testid="rare-card" className="card__rare">
-          {cardRare}
-        </p>
+        <div className={`card__rare--container ${cardRare}`}>
+          <p data-testid="rare-card" className={`card__rare`}>
+            {cardRare}
+          </p>
+        </div>
         {cardTrunfo ? (
           <div className="super-trunfo--container">
             <img src={ crownImage } alt="super-trunfo" className="super-trunfo" />

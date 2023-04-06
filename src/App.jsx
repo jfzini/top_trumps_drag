@@ -78,6 +78,7 @@ class App extends React.Component {
       cardAttr1,
       cardAttr2,
       cardAttr3,
+      cardAttr4,
       cardImage,
       cardRare,
       cardTrunfo,
@@ -89,6 +90,7 @@ class App extends React.Component {
       cardAttr1,
       cardAttr2,
       cardAttr3,
+      cardAttr4,
       cardImage,
       cardRare,
       cardTrunfo,
@@ -100,8 +102,10 @@ class App extends React.Component {
       cardAttr1: '0',
       cardAttr2: '0',
       cardAttr3: '0',
+      cardAttr4: '0',
       cardImage: '',
       cardRare: 'normal',
+      cardTrunfo: false,
       isSaveButtonDisabled: true,
       hasTrunfo: prevCardTrunfo ? true : hasTrunfo,
       savedCardsArr: [...savedCardsArr, savedCard],
@@ -140,7 +144,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <h1>Tryunfo</h1>
+        <h1>Tryunfo Drag</h1>
         <div className="creation__container">
           <Form
             cardName={ cardName }
@@ -163,6 +167,7 @@ class App extends React.Component {
             cardAttr1={ cardAttr1 }
             cardAttr2={ cardAttr2 }
             cardAttr3={ cardAttr3 }
+            cardAttr4={ cardAttr4 }
             cardImage={ cardImage }
             cardRare={ cardRare }
             cardTrunfo={ cardTrunfo }
@@ -177,6 +182,7 @@ class App extends React.Component {
                 cardAttr1: savedAttr1,
                 cardAttr2: savedAttr2,
                 cardAttr3: savedAttr3,
+                cardAttr4: savedAttr4,
                 cardImage: savedImage,
                 cardRare: savedRare,
                 cardTrunfo: savedTrunfo,
@@ -190,6 +196,7 @@ class App extends React.Component {
                   cardAttr1={ savedAttr1 }
                   cardAttr2={ savedAttr2 }
                   cardAttr3={ savedAttr3 }
+                  cardAttr4={ savedAttr4 }
                   cardImage={ savedImage }
                   cardRare={ savedRare }
                   cardTrunfo={ savedTrunfo }

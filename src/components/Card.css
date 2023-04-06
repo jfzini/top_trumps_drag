@@ -1,20 +1,11 @@
-.attr {
-  align-items: center;
-  background-color: white;
-  border-radius: 20px;
-  box-shadow: inset 0 0 6px black;
-  display: flex;
-  justify-content: space-between;
-  margin: 20px;
-  padding-right: 30px;
-  width: 100px;
-}
+:root {
 
-.attr__container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 300px;
+  --green-gradient: linear-gradient(135deg, #003b1b 0%, #00692e 49%, #00fc71 100%);
+
+  --blue-gradient: linear-gradient(135deg, #001b3b 0%, #003679 49%, #0073ff 100%);
+
+  --purple-gradient: linear-gradient(135deg, #0b0016 0%, #6700c7 49%, #f100ff 100%);
+
 }
 
 .card__container {
@@ -39,6 +30,7 @@
 }
 
 .card__img--container {
+  background-color: white;
   border-radius: 20px;
   box-shadow: 0 0 10px black;
   height: 220px;
@@ -52,24 +44,105 @@
   height: 220px;
 }
 
-.attr__img {
+.card__description {
+  align-items: center;
+  background-color: rgb(243, 216, 255);
+  border-radius: 20px;
+  box-shadow: 0 0 10px black;
+  display: flex;
+  height: 80px;
+  margin: 20px 0;
+  padding: 10px;
+  text-align: center;
+  width: 340px;
+}
+
+.card__attr {
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: inset 0 0 6px black;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+  padding-right: 30px;
+  width: 100px;
+}
+
+.card__attr--container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 300px;
+}
+
+.card__attr--img {
   width: 40px;
 }
 
 .super-trunfo--container {
-  display: flex;
   align-items: center;
+  animation: appear 1s ease-in-out;
+  background-color: rgb(255, 145, 0);
+  box-shadow: inset 0 0 3px black;
+  display: flex;
+  height: 100px;
   justify-content: center;
   margin-top: 30px;
   width: 384px;
-  height: 100px;
-  background-color: rgb(255, 145, 0);
-  box-shadow: inset 0 0 3px black;
 }
 
 .super-trunfo {
-  width: 60px;
-  margin-right: 30px;
   border-radius: 50%;
   box-shadow: 0 0 20px gold , 0 0 20px gold , 0 0 20px gold;
+  margin-right: 30px;
+  width: 60px;
+}
+
+.normal {
+  background-image: var(--green-gradient);
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: -10px;
+  margin-top: 10px;
+  padding: 2px;
+  text-align: center;
+  transition: all 0.2s linear;
+  width: 384px;
+}
+
+.raro {
+  background-image: var(--blue-gradient);
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: -10px;
+  margin-top: 10px;
+  padding: 5px;
+  text-align: center;
+  transition: all 0.2s linear;
+  width: 384px;
+}
+
+.muito {
+  background-image: var(--purple-gradient);
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: -10px;
+  margin-top: 10px;
+  padding: 7px;
+  text-align: center;
+  transition: all 0.2s linear;
+  width: 384px;
+}
+
+@keyframes appear {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
 }
