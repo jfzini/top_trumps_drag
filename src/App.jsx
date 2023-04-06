@@ -189,7 +189,7 @@ class App extends React.Component {
               },
               index,
             ) => (
-              <div key={ index }>
+              <div key={ index } className="deck__card--container">
                 <Card
                   cardName={ savedName }
                   cardDescription={ savedDescription }
@@ -204,8 +204,11 @@ class App extends React.Component {
                 <button
                   data-testid="delete-button"
                   onClick={ (event) => this.handleRemoveBtn(event, index) }
+                  className="remove__button"
                 >
-                  Remover
+                  <span className="material-symbols-outlined">
+                    delete_forever
+                  </span>
                 </button>
               </div>
             ),

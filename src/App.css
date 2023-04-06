@@ -4,3 +4,30 @@
   justify-content: center;
   margin: 40px;
 }
+
+.deck__card--container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.remove__button {
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 5px black;
+  display: flex;
+  margin-top: -20px;
+  padding: 5px;
+  transform: scale(1.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.remove__button:hover {
+  background-color: red;
+  cursor: pointer;
+  transform: scale(1.4);
+}
+
+.remove__button:active {
+  transform: scale(1.4) translateY(5px);
+}
