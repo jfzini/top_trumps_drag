@@ -10,6 +10,7 @@ class App extends React.Component {
     cardAttr1: '0',
     cardAttr2: '0',
     cardAttr3: '0',
+    cardAttr4: '0',
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
@@ -29,7 +30,7 @@ class App extends React.Component {
   };
 
   validateAttr = () => {
-    const { cardAttr1, cardAttr2, cardAttr3 } = this.state;
+    const { cardAttr1, cardAttr2, cardAttr3, cardAttr4 } = this.state;
     // power limits for each attribute
     const powerLimit = 90;
     const sumPowerLimit = 210;
@@ -37,10 +38,12 @@ class App extends React.Component {
     const valAttr1 = Number(cardAttr1) <= powerLimit && Number(cardAttr1) >= 0;
     const valAttr2 = Number(cardAttr2) <= powerLimit && Number(cardAttr2) >= 0;
     const valAttr3 = Number(cardAttr3) <= powerLimit && Number(cardAttr3) >= 0;
-    const sum = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3);
+    const valAttr4 = Number(cardAttr4) <= powerLimit && Number(cardAttr4) >= 0;
+    const sum = 
+      Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3) + Number(cardAttr4);
     const validateSum = sum <= sumPowerLimit;
 
-    const validateAllAttr = valAttr1 && valAttr2 && valAttr3 && validateSum;
+    const validateAllAttr = valAttr1 && valAttr2 && valAttr3 &&valAttr4 && validateSum;
     return validateAllAttr;
   };
 
@@ -123,6 +126,7 @@ class App extends React.Component {
       cardAttr1,
       cardAttr2,
       cardAttr3,
+      cardAttr4,
       cardImage,
       cardRare,
       cardTrunfo,
@@ -141,6 +145,7 @@ class App extends React.Component {
             cardAttr1={ cardAttr1 }
             cardAttr2={ cardAttr2 }
             cardAttr3={ cardAttr3 }
+            cardAttr4={ cardAttr4 }
             cardImage={ cardImage }
             cardRare={ cardRare }
             cardTrunfo={ cardTrunfo }

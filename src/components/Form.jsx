@@ -11,6 +11,7 @@ class Form extends Component {
       cardAttr1,
       cardAttr2,
       cardAttr3,
+      cardAttr4,
       cardImage,
       cardRare,
       cardTrunfo,
@@ -45,7 +46,7 @@ class Form extends Component {
         <Input
           id="attr1-input"
           name="cardAttr1"
-          label="Atributo 1"
+          label="Charisma"
           type="number"
           value={ cardAttr1 }
           onChange={ onInputChange }
@@ -53,7 +54,7 @@ class Form extends Component {
         <Input
           id="attr2-input"
           name="cardAttr2"
-          label="Atributo 2"
+          label="Uniqueness"
           type="number"
           value={ cardAttr2 }
           onChange={ onInputChange }
@@ -61,9 +62,17 @@ class Form extends Component {
         <Input
           id="attr3-input"
           name="cardAttr3"
-          label="Atributo 3"
+          label="Nerve"
           type="number"
           value={ cardAttr3 }
+          onChange={ onInputChange }
+        />
+        <Input
+          id="attr4-input"
+          name="cardAttr4"
+          label="Talent"
+          type="number"
+          value={ cardAttr4 }
           onChange={ onInputChange }
         />
         <Input
