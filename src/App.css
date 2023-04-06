@@ -1,6 +1,6 @@
 .creation__container, .deck__container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   margin: 40px;
 }
