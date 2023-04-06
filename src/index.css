@@ -14,19 +14,6 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-family: 'Magnitude', sans-serif;
-  text-align: center;
-  color: magenta;
-  font-size: 4rem;
-  font-weight: lighter;
-  padding: 20px;
-  text-shadow: 1px 1px 2px black;
-  background-color: rgb(0, 255, 115);
-  position: relative;
-  width: 100%;
-}
-
 .container__column {
   display: flex;
   flex-direction: column;

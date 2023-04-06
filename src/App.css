@@ -1,3 +1,30 @@
+h1 {
+  background-color: rgb(0, 255, 115);
+  color: magenta;
+  font-family: Magnitude , sans-serif;
+  font-size: 4rem;
+  font-weight: 400;
+  padding: 20px;
+  position: relative;
+  text-align: center;
+  text-shadow: 1px 1px 2px black;
+  width: 100%;
+}
+
+h2 {
+  background-color: rgb(0, 255, 115);
+  color: magenta;
+  font-family: Magnitude , sans-serif;
+  font-size: 4rem;
+  font-weight: 400;
+  padding: 20px;
+  position: relative;
+  text-align: center;
+  text-shadow: 1px 1px 2px black;
+  top: 2vh;
+  width: 100%;
+}
+
 .creation__container, .deck__container {
   display: flex;
   flex-wrap: wrap;

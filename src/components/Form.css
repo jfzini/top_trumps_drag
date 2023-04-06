@@ -27,6 +27,15 @@
   height: 100px;
 }
 
+.trunfo__checkbox {
+  align-items: center;
+  display: flex;
+  font-size: 1rem;
+  justify-content: space-between;
+  margin: 20px 0;
+  width: 37%;
+}
+
 .save__button {
   background-color: rgb(253, 0, 241);
   border: none;

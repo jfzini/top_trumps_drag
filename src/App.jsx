@@ -173,6 +173,7 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
           />
         </div>
+        <h2>Seu Baralho</h2>
         <div className="deck__container">
           {savedCardsArr.map(
             (
