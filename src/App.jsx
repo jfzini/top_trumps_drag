@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import './App.css';
 
 class App extends React.Component {
   state = {
@@ -101,6 +102,20 @@ class App extends React.Component {
     }));
   };
 
+  handleRemoveBtn = (index) => {
+    const { savedCardsArr, hasTrunfo } = this.state;
+    const newArray = savedCardsArr;
+    newArray.splice(index, 1);
+    this.setState({
+      savedCardsArr: newArray,
+    });
+    if (hasTrunfo) {
+      this.setState({
+        hasTrunfo: false,
+      });
+    }
+  };
+
   render() {
     const {
       cardName,
@@ -145,27 +160,37 @@ class App extends React.Component {
         />
         <div>
           {savedCardsArr.map(
-            ({
-              cardName: savedName,
-              cardDescription: savedDescription,
-              cardAttr1: savedAttr1,
-              cardAttr2: savedAttr2,
-              cardAttr3: savedAttr3,
-              cardImage: savedImage,
-              cardRare: savedRare,
-              cardTrunfo: savedTrunfo,
-            }) => (
-              <Card
-                key={ savedName }
-                cardName={ savedName }
-                cardDescription={ savedDescription }
-                cardAttr1={ savedAttr1 }
-                cardAttr2={ savedAttr2 }
-                cardAttr3={ savedAttr3 }
-                cardImage={ savedImage }
-                cardRare={ savedRare }
-                cardTrunfo={ savedTrunfo }
-              />
+            (
+              {
+                cardName: savedName,
+                cardDescription: savedDescription,
+                cardAttr1: savedAttr1,
+                cardAttr2: savedAttr2,
+                cardAttr3: savedAttr3,
+                cardImage: savedImage,
+                cardRare: savedRare,
+                cardTrunfo: savedTrunfo,
+              },
+              index,
+            ) => (
+              <div key={ index }>
+                <Card
+                  cardName={ savedName }
+                  cardDescription={ savedDescription }
+                  cardAttr1={ savedAttr1 }
+                  cardAttr2={ savedAttr2 }
+                  cardAttr3={ savedAttr3 }
+                  cardImage={ savedImage }
+                  cardRare={ savedRare }
+                  cardTrunfo={ savedTrunfo }
+                />
+                <button
+                  data-testid="delete-button"
+                  onClick={ (event) => this.handleRemoveBtn(event, index) }
+                >
+                  Remover
+                </button>
+              </div>
             ),
           )}
         </div>
