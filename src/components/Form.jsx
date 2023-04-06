@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Input from './Input';
+import './Form.css'
 
 class Form extends Component {
   render() {
@@ -20,7 +21,7 @@ class Form extends Component {
     } = this.props;
 
     return (
-      <form action="" className="container__column">
+      <form action="" className="container__column creation__form">
         <Input
           id="name-input"
           type="text"
@@ -29,7 +30,7 @@ class Form extends Component {
           value={ cardName }
           onChange={ onInputChange }
         />
-        <label htmlFor="description-input">
+        <label htmlFor="description-input" className='container__column creation__input'>
           Descrição
           <textarea
             name="cardDescription"
@@ -73,7 +74,7 @@ class Form extends Component {
           value={ cardImage }
           onChange={ onInputChange }
         />
-        <label htmlFor="rare-input">
+        <label htmlFor="rare-input" className='container__column creation__input'>
           Raridade
           <select
             name="cardRare"

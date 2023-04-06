@@ -1,0 +1,25 @@
+.creation__form {
+  background-color: rgb(206, 132, 248);
+  border: 5px solid rgb(253, 0, 241);
+  border-radius: 20px;
+  box-shadow: 2px 2px 10px black , inset 0 0 3px rgb(7, 0, 17);
+  height: 500px;
+  padding: 20px;
+  width: 350px;
+}
+
+.creation__input {
+  margin-bottom: 5px;
+}
+
+.creation__input input, textarea, select {
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px black;
+  padding: 5px 10px;
+  resize: none;
+}
+
+.creation__input textarea {
+  height: 100px;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Form.css'
 
 class Card extends Component {
   render() {
@@ -15,7 +16,7 @@ class Card extends Component {
     } = this.props;
 
     return (
-      <div>
+      <div className='creation__form'>
         <p data-testid="name-card">{cardName}</p>
         <img src={ cardImage } alt={ cardName } data-testid="image-card" />
         <p data-testid="description-card">{cardDescription}</p>
