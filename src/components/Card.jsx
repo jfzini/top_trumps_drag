@@ -35,7 +35,7 @@ class Card extends Component {
             className="card__img"
           />
         </div>
-        <p data-testid="description-card" className='card__description'>
+        <p data-testid="description-card" className="card__description">
           {cardDescription}
         </p>
         <div className="card__attr--container">
@@ -58,12 +58,12 @@ class Card extends Component {
             </p>
           </div>
           <div className="card__attr">
-            <img src={ tImage } alt="talent" className={"card__attr--img" }/>
-            <p >{cardAttr4}</p>
+            <img src={ tImage } alt="talent" className="card__attr--img" />
+            <p>{cardAttr4}</p>
           </div>
         </div>
-        <div className={`card__rare--container ${cardRare}`}>
-          <p data-testid="rare-card" className={`card__rare`}>
+        <div className={ `card__rare--container ${cardRare}` }>
+          <p data-testid="rare-card" className="card__rare">
             {cardRare}
           </p>
         </div>
@@ -88,6 +88,7 @@ Card.propTypes = {
   cardAttr1: PropTypes.string.isRequired,
   cardAttr2: PropTypes.string.isRequired,
   cardAttr3: PropTypes.string.isRequired,
+  cardAttr4: PropTypes.string.isRequired,
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
