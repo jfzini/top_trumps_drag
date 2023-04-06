@@ -6,6 +6,7 @@ import cImage from '../images/c.png';
 import uImage from '../images/u.png';
 import nImage from '../images/n.png';
 import tImage from '../images/t.png';
+import crownImage from '../images/crown.png';
 
 class Card extends Component {
   render() {
@@ -57,9 +58,12 @@ class Card extends Component {
           {cardRare}
         </p>
         {cardTrunfo ? (
-          <p data-testid="trunfo-card" className="card__trunfo">
-            Super Trunfo
-          </p>
+          <div className='super-trunfo--container'>
+            <img src={crownImage} alt="super-trunfo" className='super-trunfo'/>
+            <p data-testid="trunfo-card" className="card__trunfo">
+              Super Trunfo
+            </p>
+          </div>
         ) : null}
       </div>
     );
