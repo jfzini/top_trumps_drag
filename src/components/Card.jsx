@@ -27,30 +27,35 @@ class Card extends Component {
           {cardName}
         </p>
         <div className="card__img--container">
-          <img src={cardImage} alt={cardName} data-testid="image-card" className="card__img" />
+          <img
+            src={ cardImage }
+            alt={ cardName }
+            data-testid="image-card"
+            className="card__img"
+          />
         </div>
         <p data-testid="description-card">{cardDescription}</p>
         <div className="attr__container">
-          <div className='attr'>
-            <img src={cImage} alt="charisma" className="attr__img" />
+          <div className="attr">
+            <img src={ cImage } alt="charisma" className="attr__img" />
             <p data-testid="attr1-card" className="card__attr">
               {cardAttr1}
             </p>
           </div>
-          <div className='attr'>
-            <img src={uImage} alt="uniqueness" className="attr__img" />
+          <div className="attr">
+            <img src={ uImage } alt="uniqueness" className="attr__img" />
             <p data-testid="attr2-card" className="card__attr">
               {cardAttr2}
             </p>
           </div>
-          <div className='attr'>
-            <img src={nImage} alt="nerve" className="attr__img" />
+          <div className="attr">
+            <img src={ nImage } alt="nerve" className="attr__img" />
             <p data-testid="attr3-card" className="card__attr">
               {cardAttr3}
             </p>
           </div>
-          <div className='attr'>
-            <img src={tImage} alt="talent" className="attr__img" />
+          <div className="attr">
+            <img src={ tImage } alt="talent" className="attr__img" />
             <p className="card__attr">{cardAttr3}</p>
           </div>
         </div>
@@ -58,8 +63,8 @@ class Card extends Component {
           {cardRare}
         </p>
         {cardTrunfo ? (
-          <div className='super-trunfo--container'>
-            <img src={crownImage} alt="super-trunfo" className='super-trunfo'/>
+          <div className="super-trunfo--container">
+            <img src={ crownImage } alt="super-trunfo" className="super-trunfo" />
             <p data-testid="trunfo-card" className="card__trunfo">
               Super Trunfo
             </p>
