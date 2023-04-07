@@ -53,7 +53,7 @@ class App extends React.Component {
     }));
   };
 
-  handleRemoveBtn = async (index) => {
+  handleRemoveBtn = (index) => {
     const { savedCardsArr, hasTrunfo } = this.state;
     const newArray = savedCardsArr;
     newArray.splice(index, 1);
@@ -61,7 +61,7 @@ class App extends React.Component {
       savedCardsArr: newArray,
     });
     if (hasTrunfo) {
-      await this.setState({
+      this.setState({
         hasTrunfo: newArray.some(({ cardTrunfo }) => cardTrunfo === true),
       });
     }
