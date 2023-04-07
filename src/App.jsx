@@ -18,6 +18,7 @@ class App extends React.Component {
     isSaveButtonDisabled: true,
     savedCardsArr: [],
     filterQuery: '',
+    filterRarity: ['normal', 'raro', 'muito raro'],
   };
 
   validateText = () => {
@@ -73,29 +74,7 @@ class App extends React.Component {
 
   handleClick = (event) => {
     event.preventDefault();
-    const {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardAttr4,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-    } = this.state;
-
-    const savedCard = {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardAttr4,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-    };
+    const savedCard = this.state;
 
     this.setState(({ savedCardsArr, cardTrunfo: prevCardTrunfo, hasTrunfo }) => ({
       cardName: '',
@@ -128,20 +107,28 @@ class App extends React.Component {
     }
   };
 
-  handleFilter = ({ target: { value } }) => {
+  handleNameFilter = ({ target: { value } }) => {
     this.setState({
       filterQuery: value,
     });
+  };
+
+  handleRareFilter = ({ target }) => {
+    const value = target.value === 'todas'
+      ? ['normal', 'raro', 'muito raro']
+      : [target.value];
+    this.setState({
+      filterRarity: value,
+    });
+    console.log(value);
   };
 
   render() {
     const {
       cardName,
       cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardAttr4,
+      cardAttr1, cardAttr2,
+      cardAttr3, cardAttr4,
       cardImage,
       cardRare,
       cardTrunfo,
@@ -149,6 +136,7 @@ class App extends React.Component {
       isSaveButtonDisabled,
       savedCardsArr,
       filterQuery,
+      filterRarity,
     } = this.state;
 
     return (
@@ -185,10 +173,27 @@ class App extends React.Component {
         <h2>Seu Baralho</h2>
         <section className="deck__container">
           <div>
-            <input type="text" data-testid="name-filter" onChange={ this.handleFilter } />
+            <input
+              type="text"
+              data-testid="name-filter"
+              onChange={ this.handleNameFilter }
+            />
+            <select
+              name="rare-filter"
+              id="rare-filter"
+              data-testid="rare-filter"
+              onChange={ this.handleRareFilter }
+            >
+              <option value="todas">todas</option>
+              <option value="normal">normal</option>
+              <option value="raro">raro</option>
+              <option value="muito raro">muito raro</option>
+            </select>
           </div>
           {
-            savedCardsArr.filter(({ cardName: name }) => name.includes(filterQuery)).map(
+            savedCardsArr.filter(({ cardName: name, cardRare: rarity }) => (
+              name.includes(filterQuery)
+              && filterRarity.some((el) => el === rarity))).map(
               (
                 {
                   cardName: savedName,
