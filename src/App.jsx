@@ -17,6 +17,7 @@ class App extends React.Component {
     hasTrunfo: false,
     isSaveButtonDisabled: true,
     savedCardsArr: [],
+    filterQuery: '',
   };
 
   validateText = () => {
@@ -33,7 +34,7 @@ class App extends React.Component {
     const { cardAttr1, cardAttr2, cardAttr3, cardAttr4 } = this.state;
     // power limits for each attribute
     const powerLimit = 90;
-    const sumPowerLimit = 330;
+    const sumPowerLimit = 210;
     // proper validation
     const attr1 = Number(cardAttr1);
     const attr2 = Number(cardAttr2);
@@ -127,6 +128,12 @@ class App extends React.Component {
     }
   };
 
+  handleFilter = ({ target: { value } }) => {
+    this.setState({
+      filterQuery: value,
+    });
+  };
+
   render() {
     const {
       cardName,
@@ -141,6 +148,7 @@ class App extends React.Component {
       hasTrunfo,
       isSaveButtonDisabled,
       savedCardsArr,
+      filterQuery,
     } = this.state;
 
     return (
@@ -176,45 +184,50 @@ class App extends React.Component {
         </section>
         <h2>Seu Baralho</h2>
         <section className="deck__container">
-          {savedCardsArr.map(
-            (
-              {
-                cardName: savedName,
-                cardDescription: savedDescription,
-                cardAttr1: savedAttr1,
-                cardAttr2: savedAttr2,
-                cardAttr3: savedAttr3,
-                cardAttr4: savedAttr4,
-                cardImage: savedImage,
-                cardRare: savedRare,
-                cardTrunfo: savedTrunfo,
-              },
-              index,
-            ) => (
-              <div key={ index } className="deck__card--container">
-                <Card
-                  cardName={ savedName }
-                  cardDescription={ savedDescription }
-                  cardAttr1={ savedAttr1 }
-                  cardAttr2={ savedAttr2 }
-                  cardAttr3={ savedAttr3 }
-                  cardAttr4={ savedAttr4 }
-                  cardImage={ savedImage }
-                  cardRare={ savedRare }
-                  cardTrunfo={ savedTrunfo }
-                />
-                <button
-                  data-testid="delete-button"
-                  onClick={ () => this.handleRemoveBtn(index) }
-                  className="remove__button"
-                >
-                  <span className="material-symbols-outlined">
-                    delete_forever
-                  </span>
-                </button>
-              </div>
-            ),
-          )}
+          <div>
+            <input type="text" data-testid="name-filter" onChange={ this.handleFilter } />
+          </div>
+          {
+            savedCardsArr.filter(({ cardName: name }) => name.includes(filterQuery)).map(
+              (
+                {
+                  cardName: savedName,
+                  cardDescription: savedDescription,
+                  cardAttr1: savedAttr1,
+                  cardAttr2: savedAttr2,
+                  cardAttr3: savedAttr3,
+                  cardAttr4: savedAttr4,
+                  cardImage: savedImage,
+                  cardRare: savedRare,
+                  cardTrunfo: savedTrunfo,
+                },
+                index,
+              ) => (
+                <div key={ index } className="deck__card--container">
+                  <Card
+                    cardName={ savedName }
+                    cardDescription={ savedDescription }
+                    cardAttr1={ savedAttr1 }
+                    cardAttr2={ savedAttr2 }
+                    cardAttr3={ savedAttr3 }
+                    cardAttr4={ savedAttr4 }
+                    cardImage={ savedImage }
+                    cardRare={ savedRare }
+                    cardTrunfo={ savedTrunfo }
+                  />
+                  <button
+                    data-testid="delete-button"
+                    onClick={ () => this.handleRemoveBtn(index) }
+                    className="remove__button"
+                  >
+                    <span className="material-symbols-outlined">
+                      delete_forever
+                    </span>
+                  </button>
+                </div>
+              ),
+            )
+          }
         </section>
       </div>
     );
