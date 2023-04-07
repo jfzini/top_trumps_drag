@@ -93,7 +93,6 @@ class App extends React.Component {
   };
 
   handleRemoveBtn = (index) => {
-    console.log(index);
     const { savedCardsArr, hasTrunfo } = this.state;
     const newArray = savedCardsArr;
     newArray.splice(index, 1);
@@ -120,7 +119,6 @@ class App extends React.Component {
     this.setState({
       filterRarity: value,
     });
-    console.log(value);
   };
 
   render() {
