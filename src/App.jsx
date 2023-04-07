@@ -2,6 +2,7 @@ import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
 import './App.css';
+import { validateText, validateAttr } from './helpers';
 
 class App extends React.Component {
   state = {
@@ -22,37 +23,9 @@ class App extends React.Component {
     filterTrunfo: false,
   };
 
-  validateText = () => {
-    const { cardName, cardDescription, cardImage } = this.state;
-    const validateName = cardName.length > 0;
-    const validateDescription = cardDescription.length > 0;
-    const validateImage = cardImage.length > 0;
-    const validateTextFields = validateName && validateDescription && validateImage;
-    return validateTextFields;
-  };
-
-  validateAttr = () => {
-    const { cardAttr1, cardAttr2, cardAttr3, cardAttr4 } = this.state;
-    const powerLimit = 90;
-    const sumPowerLimit = 210;
-    const attr1 = Number(cardAttr1);
-    const attr2 = Number(cardAttr2);
-    const attr3 = Number(cardAttr3);
-    const attr4 = Number(cardAttr4);
-    const valAttr1 = attr1 <= powerLimit && attr1 >= 0;
-    const valAttr2 = attr2 <= powerLimit && attr2 >= 0;
-    const valAttr3 = attr3 <= powerLimit && attr3 >= 0;
-    const valAttr4 = attr4 <= powerLimit && attr4 >= 0;
-    const sum = attr1 + attr2 + attr3 + attr4;
-    const validateSum = sum <= sumPowerLimit;
-
-    const validateAllAttr = valAttr1 && valAttr2 && valAttr3 && valAttr4 && validateSum;
-    return validateAllAttr;
-  };
-
   validateFields = () => {
-    const textFields = this.validateText();
-    const attrFields = this.validateAttr();
+    const textFields = validateText(this.state);
+    const attrFields = validateAttr(this.state);
     this.setState({ isSaveButtonDisabled: !(textFields && attrFields) });
   };
 
@@ -80,7 +53,7 @@ class App extends React.Component {
     }));
   };
 
-  handleRemoveBtn = (index) => {
+  handleRemoveBtn = async (index) => {
     const { savedCardsArr, hasTrunfo } = this.state;
     const newArray = savedCardsArr;
     newArray.splice(index, 1);
@@ -88,8 +61,8 @@ class App extends React.Component {
       savedCardsArr: newArray,
     });
     if (hasTrunfo) {
-      this.setState({
-        hasTrunfo: false,
+      await this.setState({
+        hasTrunfo: newArray.some(({ cardTrunfo }) => cardTrunfo === true),
       });
     }
   };
@@ -235,11 +208,11 @@ class App extends React.Component {
           </div>
           { filterTrunfo
             ? (savedCardsArr.filter(({ cardTrunfo: trunfo }) => trunfo === true)
-              .map((el) => this.renderDeck(el)))
+              .map((el, index) => this.renderDeck(el, index)))
             : (savedCardsArr.filter(({ cardName: name, cardRare: rarity }) => (
               name.includes(filterQuery)
               && filterRarity.some((el) => el === rarity)))
-              .map((el) => this.renderDeck(el)))}
+              .map((el, index) => this.renderDeck(el, index)))}
         </section>
       </div>
     );
