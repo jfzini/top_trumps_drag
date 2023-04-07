@@ -51,6 +51,7 @@
   box-shadow: 0 0 10px black;
   display: flex;
   height: 80px;
+  justify-content: center;
   margin: 20px 0;
   padding: 10px;
   text-align: center;

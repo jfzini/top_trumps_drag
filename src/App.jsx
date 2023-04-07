@@ -33,7 +33,7 @@ class App extends React.Component {
     const { cardAttr1, cardAttr2, cardAttr3, cardAttr4 } = this.state;
     // power limits for each attribute
     const powerLimit = 90;
-    const sumPowerLimit = 210;
+    const sumPowerLimit = 330;
     // proper validation
     const attr1 = Number(cardAttr1);
     const attr2 = Number(cardAttr2);
@@ -113,6 +113,7 @@ class App extends React.Component {
   };
 
   handleRemoveBtn = (index) => {
+    console.log(index);
     const { savedCardsArr, hasTrunfo } = this.state;
     const newArray = savedCardsArr;
     newArray.splice(index, 1);
@@ -204,7 +205,7 @@ class App extends React.Component {
                 />
                 <button
                   data-testid="delete-button"
-                  onClick={ (event) => this.handleRemoveBtn(event, index) }
+                  onClick={ () => this.handleRemoveBtn(index) }
                   className="remove__button"
                 >
                   <span className="material-symbols-outlined">
