@@ -2,7 +2,6 @@ import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
 import './App.css';
-import { element } from 'prop-types';
 
 class App extends React.Component {
   state = {
@@ -25,7 +24,6 @@ class App extends React.Component {
 
   validateText = () => {
     const { cardName, cardDescription, cardImage } = this.state;
-
     const validateName = cardName.length > 0;
     const validateDescription = cardDescription.length > 0;
     const validateImage = cardImage.length > 0;
@@ -35,10 +33,8 @@ class App extends React.Component {
 
   validateAttr = () => {
     const { cardAttr1, cardAttr2, cardAttr3, cardAttr4 } = this.state;
-    // power limits for each attribute
     const powerLimit = 90;
     const sumPowerLimit = 210;
-    // proper validation
     const attr1 = Number(cardAttr1);
     const attr2 = Number(cardAttr2);
     const attr3 = Number(cardAttr3);
@@ -57,27 +53,17 @@ class App extends React.Component {
   validateFields = () => {
     const textFields = this.validateText();
     const attrFields = this.validateAttr();
-
-    this.setState({
-      isSaveButtonDisabled: !(textFields && attrFields),
-    });
+    this.setState({ isSaveButtonDisabled: !(textFields && attrFields) });
   };
 
   handleChange = ({ target }) => {
     const { name } = target;
     const value = name === 'cardTrunfo' ? target.checked : target.value;
-    this.setState(
-      {
-        [name]: value,
-      },
-      this.validateFields,
-    );
+    this.setState({ [name]: value }, this.validateFields);
   };
 
-  handleClick = (event) => {
-    event.preventDefault();
+  handleClick = () => {
     const savedCard = this.state;
-
     this.setState(({ savedCardsArr, cardTrunfo: prevCardTrunfo, hasTrunfo }) => ({
       cardName: '',
       cardDescription: '',
@@ -108,74 +94,63 @@ class App extends React.Component {
     }
   };
 
-  // handleFilter = ({target}) => {
-  //   const value = 
-  // }
-
   handleNameFilter = ({ target: { value } }) => {
-    this.setState({
-      filterQuery: value,
-    });
+    this.setState({ filterQuery: value });
   };
 
   handleRareFilter = ({ target }) => {
     const value = target.value === 'todas'
       ? ['normal', 'raro', 'muito raro']
       : [target.value];
-    this.setState({
-      filterRarity: value,
-    });
+    this.setState({ filterRarity: value });
   };
-  
+
   handleTrunfoFilter = ({ target }) => {
     const value = target.checked;
     if (value) {
-      this.setState({
-        filterTrunfo: true,
-      });
+      this.setState({ filterTrunfo: true });
     } else {
-      this.setState({
-        filterTrunfo: false,
-      });
+      this.setState({ filterTrunfo: false });
     }
   };
 
-  renderDeck = ({
-    cardName: savedName,
-    cardDescription: savedDescription,
-    cardAttr1: savedAttr1,
-    cardAttr2: savedAttr2,
-    cardAttr3: savedAttr3,
-    cardAttr4: savedAttr4,
-    cardImage: savedImage,
-    cardRare: savedRare,
-    cardTrunfo: savedTrunfo,
-  },
-  index,
-) => (
-  <div key={ index } className="deck__card--container">
-    <Card
-      cardName={ savedName }
-      cardDescription={ savedDescription }
-      cardAttr1={ savedAttr1 }
-      cardAttr2={ savedAttr2 }
-      cardAttr3={ savedAttr3 }
-      cardAttr4={ savedAttr4 }
-      cardImage={ savedImage }
-      cardRare={ savedRare }
-      cardTrunfo={ savedTrunfo }
-    />
-    <button
-      data-testid="delete-button"
-      onClick={ () => this.handleRemoveBtn(index) }
-      className="remove__button"
-    >
-      <span className="material-symbols-outlined">
-        delete_forever
-      </span>
-    </button>
-  </div>
-)
+  renderDeck = (
+    {
+      cardName: savedName,
+      cardDescription: savedDescription,
+      cardAttr1: savedAttr1,
+      cardAttr2: savedAttr2,
+      cardAttr3: savedAttr3,
+      cardAttr4: savedAttr4,
+      cardImage: savedImage,
+      cardRare: savedRare,
+      cardTrunfo: savedTrunfo,
+    },
+    index,
+  ) => (
+    <div key={ index } className="deck__card--container">
+      <Card
+        cardName={ savedName }
+        cardDescription={ savedDescription }
+        cardAttr1={ savedAttr1 }
+        cardAttr2={ savedAttr2 }
+        cardAttr3={ savedAttr3 }
+        cardAttr4={ savedAttr4 }
+        cardImage={ savedImage }
+        cardRare={ savedRare }
+        cardTrunfo={ savedTrunfo }
+      />
+      <button
+        data-testid="delete-button"
+        onClick={ () => this.handleRemoveBtn(index) }
+        className="remove__button"
+      >
+        <span className="material-symbols-outlined">
+          delete_forever
+        </span>
+      </button>
+    </div>
+  );
 
   render() {
     const {
@@ -259,10 +234,12 @@ class App extends React.Component {
             </label>
           </div>
           { filterTrunfo
-            ? (savedCardsArr.filter(({ cardTrunfo }) => cardTrunfo === true).map((el) => this.renderDeck(el)))
+            ? (savedCardsArr.filter(({ cardTrunfo: trunfo }) => trunfo === true)
+              .map((el) => this.renderDeck(el)))
             : (savedCardsArr.filter(({ cardName: name, cardRare: rarity }) => (
               name.includes(filterQuery)
-              && filterRarity.some((el) => el === rarity))).map((el) => this.renderDeck(el)))}
+              && filterRarity.some((el) => el === rarity)))
+              .map((el) => this.renderDeck(el)))}
         </section>
       </div>
     );
