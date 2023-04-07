@@ -2,6 +2,7 @@ import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
 import './App.css';
+import { element } from 'prop-types';
 
 class App extends React.Component {
   state = {
@@ -19,6 +20,7 @@ class App extends React.Component {
     savedCardsArr: [],
     filterQuery: '',
     filterRarity: ['normal', 'raro', 'muito raro'],
+    filterTrunfo: false,
   };
 
   validateText = () => {
@@ -106,6 +108,10 @@ class App extends React.Component {
     }
   };
 
+  // handleFilter = ({target}) => {
+  //   const value = 
+  // }
+
   handleNameFilter = ({ target: { value } }) => {
     this.setState({
       filterQuery: value,
@@ -120,6 +126,56 @@ class App extends React.Component {
       filterRarity: value,
     });
   };
+  
+  handleTrunfoFilter = ({ target }) => {
+    const value = target.checked;
+    if (value) {
+      this.setState({
+        filterTrunfo: true,
+      });
+    } else {
+      this.setState({
+        filterTrunfo: false,
+      });
+    }
+  };
+
+  renderDeck = ({
+    cardName: savedName,
+    cardDescription: savedDescription,
+    cardAttr1: savedAttr1,
+    cardAttr2: savedAttr2,
+    cardAttr3: savedAttr3,
+    cardAttr4: savedAttr4,
+    cardImage: savedImage,
+    cardRare: savedRare,
+    cardTrunfo: savedTrunfo,
+  },
+  index,
+) => (
+  <div key={ index } className="deck__card--container">
+    <Card
+      cardName={ savedName }
+      cardDescription={ savedDescription }
+      cardAttr1={ savedAttr1 }
+      cardAttr2={ savedAttr2 }
+      cardAttr3={ savedAttr3 }
+      cardAttr4={ savedAttr4 }
+      cardImage={ savedImage }
+      cardRare={ savedRare }
+      cardTrunfo={ savedTrunfo }
+    />
+    <button
+      data-testid="delete-button"
+      onClick={ () => this.handleRemoveBtn(index) }
+      className="remove__button"
+    >
+      <span className="material-symbols-outlined">
+        delete_forever
+      </span>
+    </button>
+  </div>
+)
 
   render() {
     const {
@@ -135,6 +191,7 @@ class App extends React.Component {
       savedCardsArr,
       filterQuery,
       filterRarity,
+      filterTrunfo,
     } = this.state;
 
     return (
@@ -173,64 +230,39 @@ class App extends React.Component {
           <div>
             <input
               type="text"
+              name="filterQuery"
               data-testid="name-filter"
               onChange={ this.handleNameFilter }
+              disabled={ filterTrunfo }
             />
             <select
-              name="rare-filter"
+              name="filterRarity"
               id="rare-filter"
               data-testid="rare-filter"
               onChange={ this.handleRareFilter }
+              disabled={ filterTrunfo }
             >
               <option value="todas">todas</option>
               <option value="normal">normal</option>
               <option value="raro">raro</option>
               <option value="muito raro">muito raro</option>
             </select>
+            <label htmlFor="trunfo-filter">
+              Super Trunfo
+              <input
+                type="checkbox"
+                name="filterTrunfo"
+                id="trunfo-filter"
+                data-testid="trunfo-filter"
+                onChange={ this.handleTrunfoFilter }
+              />
+            </label>
           </div>
-          {
-            savedCardsArr.filter(({ cardName: name, cardRare: rarity }) => (
+          { filterTrunfo
+            ? (savedCardsArr.filter(({ cardTrunfo }) => cardTrunfo === true).map((el) => this.renderDeck(el)))
+            : (savedCardsArr.filter(({ cardName: name, cardRare: rarity }) => (
               name.includes(filterQuery)
-              && filterRarity.some((el) => el === rarity))).map(
-              (
-                {
-                  cardName: savedName,
-                  cardDescription: savedDescription,
-                  cardAttr1: savedAttr1,
-                  cardAttr2: savedAttr2,
-                  cardAttr3: savedAttr3,
-                  cardAttr4: savedAttr4,
-                  cardImage: savedImage,
-                  cardRare: savedRare,
-                  cardTrunfo: savedTrunfo,
-                },
-                index,
-              ) => (
-                <div key={ index } className="deck__card--container">
-                  <Card
-                    cardName={ savedName }
-                    cardDescription={ savedDescription }
-                    cardAttr1={ savedAttr1 }
-                    cardAttr2={ savedAttr2 }
-                    cardAttr3={ savedAttr3 }
-                    cardAttr4={ savedAttr4 }
-                    cardImage={ savedImage }
-                    cardRare={ savedRare }
-                    cardTrunfo={ savedTrunfo }
-                  />
-                  <button
-                    data-testid="delete-button"
-                    onClick={ () => this.handleRemoveBtn(index) }
-                    className="remove__button"
-                  >
-                    <span className="material-symbols-outlined">
-                      delete_forever
-                    </span>
-                  </button>
-                </div>
-              ),
-            )
-          }
+              && filterRarity.some((el) => el === rarity))).map((el) => this.renderDeck(el)))}
         </section>
       </div>
     );
