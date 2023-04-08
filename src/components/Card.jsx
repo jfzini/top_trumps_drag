@@ -45,6 +45,8 @@ class Card extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      isPlayer,
+      compareAttr,
     } = this.props;
 
     return (
@@ -53,48 +55,41 @@ class Card extends Component {
           {cardName}
         </p>
         <div className="card__img--container">
-          <img
-            src={ cardImage }
-            alt={ cardName }
-            data-testid="image-card"
-            className="card__img"
-          />
+          <img src={cardImage} alt={cardName} data-testid="image-card" className="card__img" />
         </div>
         <p data-testid="description-card" className="card__description">
           {cardDescription}
         </p>
         <div className="card__attr--container">
-          <div className="card__attr">
-            <img src={ cImage } alt="charisma" className="card__attr--img" />
-            <p data-testid="attr1-card">
-              {cardAttr1}
-            </p>
-          </div>
-          <div className="card__attr">
-            <img src={ uImage } alt="uniqueness" className="card__attr--img" />
-            <p data-testid="attr2-card">
-              {cardAttr2}
-            </p>
-          </div>
-          <div className="card__attr">
-            <img src={ nImage } alt="nerve" className="card__attr--img" />
-            <p data-testid="attr3-card">
-              {cardAttr3}
-            </p>
-          </div>
-          <div className="card__attr">
-            <img src={ tImage } alt="talent" className="card__attr--img" />
+          <button
+            className="card__attr"
+            disabled={!isPlayer}
+            onClick={() => compareAttr('carisma', cardAttr1)}
+          >
+            <img src={cImage} alt="charisma" className="card__attr--img" />
+            <p data-testid="attr1-card">{cardAttr1}</p>
+          </button>
+          <button className="card__attr" onClick={() => compareAttr('uniqueness', cardAttr2)}>
+            <img src={uImage} alt="uniqueness" className="card__attr--img" />
+            <p data-testid="attr2-card">{cardAttr2}</p>
+          </button>
+          <button className="card__attr" onClick={() => compareAttr('nerve', cardAttr3)}>
+            <img src={nImage} alt="nerve" className="card__attr--img" />
+            <p data-testid="attr3-card">{cardAttr3}</p>
+          </button>
+          <button className="card__attr" onClick={() => compareAttr('talent', cardAttr4)}>
+            <img src={tImage} alt="talent" className="card__attr--img" />
             <p>{cardAttr4}</p>
-          </div>
+          </button>
         </div>
-        <div className={ `card__rare--container ${cardRare}` }>
+        <div className={`card__rare--container ${cardRare}`}>
           <p data-testid="rare-card" className="card__rare">
             {cardRare}
           </p>
         </div>
         {cardTrunfo ? (
           <div className="super-trunfo--container">
-            <img src={ crownImage } alt="super-trunfo" className="super-trunfo" />
+            <img src={crownImage} alt="super-trunfo" className="super-trunfo" />
             <p data-testid="trunfo-card" className="card__trunfo">
               Super Trunfo
             </p>

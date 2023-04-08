@@ -4,6 +4,7 @@ import Card from './components/Card';
 import './App.css';
 import { validateText, validateAttr } from './helpers';
 import { dragData } from './data/data';
+import Game from './Game'
 
 class App extends React.Component {
   state = {
@@ -74,9 +75,7 @@ class App extends React.Component {
   };
 
   handleRareFilter = ({ target }) => {
-    const value = target.value === 'todas'
-      ? ['normal', 'raro', 'muito raro']
-      : [target.value];
+    const value = target.value === 'todas' ? ['normal', 'raro', 'muito raro'] : [target.value];
     this.setState({ filterRarity: value });
   };
 
@@ -91,9 +90,11 @@ class App extends React.Component {
 
   handleLoad = () => {
     const parsedStoredDeck = JSON.parse(localStorage.getItem('deck'));
-    this.setState({
-      savedCardsArr: [...parsedStoredDeck],
-    });
+    if (parsedStoredDeck) {
+      this.setState({
+        savedCardsArr: [...parsedStoredDeck],
+      });
+    }
   };
 
   validateFields = () => {
@@ -133,9 +134,7 @@ class App extends React.Component {
         onClick={ () => this.handleRemoveBtn(index) }
         className="remove__button"
       >
-        <span className="material-symbols-outlined">
-          delete_forever
-        </span>
+        <span className="material-symbols-outlined">delete_forever</span>
       </button>
     </div>
   );
@@ -144,8 +143,10 @@ class App extends React.Component {
     const {
       cardName,
       cardDescription,
-      cardAttr1, cardAttr2,
-      cardAttr3, cardAttr4,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardAttr4,
       cardImage,
       cardRare,
       cardTrunfo,
@@ -160,83 +161,92 @@ class App extends React.Component {
     return (
       <div>
         <h1>Tryunfo Drag</h1>
-        <section className="creation__container">
-          <Form
-            cardName={ cardName }
-            cardDescription={ cardDescription }
-            cardAttr1={ cardAttr1 }
-            cardAttr2={ cardAttr2 }
-            cardAttr3={ cardAttr3 }
-            cardAttr4={ cardAttr4 }
-            cardImage={ cardImage }
-            cardRare={ cardRare }
-            cardTrunfo={ cardTrunfo }
-            hasTrunfo={ hasTrunfo }
-            isSaveButtonDisabled={ isSaveButtonDisabled }
-            onInputChange={ this.handleChange }
-            onSaveButtonClick={ this.handleClick }
-          />
-          <Card
-            cardName={ cardName }
-            cardDescription={ cardDescription }
-            cardAttr1={ cardAttr1 }
-            cardAttr2={ cardAttr2 }
-            cardAttr3={ cardAttr3 }
-            cardAttr4={ cardAttr4 }
-            cardImage={ cardImage }
-            cardRare={ cardRare }
-            cardTrunfo={ cardTrunfo }
-          />
-        </section>
-        <h2>Seu Baralho</h2>
-        <div className="filter__container">
-          <label htmlFor="name-filter">
-            {' '}
-            Filtrar por nome
-            <input
-              type="text"
-              name="filterQuery"
-              data-testid="name-filter"
-              id="name-filter"
-              onChange={ this.handleNameFilter }
-              disabled={ filterTrunfo }
-            />
-          </label>
-          <label htmlFor="rare-filter">
-            Filtrar por tipo
-            <select
-              name="filterRarity"
-              id="rare-filter"
-              data-testid="rare-filter"
-              onChange={ this.handleRareFilter }
-              disabled={ filterTrunfo }
-            >
-              <option value="todas">todas</option>
-              <option value="normal">normal</option>
-              <option value="raro">raro</option>
-              <option value="muito raro">muito raro</option>
-            </select>
-          </label>
-          <label htmlFor="trunfo-filter">
-            Super Trunfo
-            <input
-              type="checkbox"
-              name="filterTrunfo"
-              id="trunfo-filter"
-              data-testid="trunfo-filter"
-              onChange={ this.handleTrunfoFilter }
-            />
-          </label>
-        </div>
-        <section className="deck__container">
-          { filterTrunfo
-            ? (savedCardsArr.filter(({ cardTrunfo: trunfo }) => trunfo === true)
-              .map((el, index) => this.renderDeck(el, index)))
-            : (savedCardsArr.filter(({ cardName: name, cardRare: rarity }) => (
-              name.toLowerCase().includes(filterQuery.toLowerCase())
-              && filterRarity.some((el) => el === rarity)))
-              .map((el, index) => this.renderDeck(el, index)))}
-        </section>
+        {true ? (
+          <Game cards={savedCardsArr}/>
+        ) : (
+          <>
+            <section className="creation__container">
+              <Form
+                cardName={ cardName }
+                cardDescription={ cardDescription }
+                cardAttr1={ cardAttr1 }
+                cardAttr2={ cardAttr2 }
+                cardAttr3={ cardAttr3 }
+                cardAttr4={ cardAttr4 }
+                cardImage={ cardImage }
+                cardRare={ cardRare }
+                cardTrunfo={ cardTrunfo }
+                hasTrunfo={ hasTrunfo }
+                isSaveButtonDisabled={ isSaveButtonDisabled }
+                onInputChange={ this.handleChange }
+                onSaveButtonClick={ this.handleClick }
+              />
+              <Card
+                cardName={ cardName }
+                cardDescription={ cardDescription }
+                cardAttr1={ cardAttr1 }
+                cardAttr2={ cardAttr2 }
+                cardAttr3={ cardAttr3 }
+                cardAttr4={ cardAttr4 }
+                cardImage={ cardImage }
+                cardRare={ cardRare }
+                cardTrunfo={ cardTrunfo }
+              />
+            </section>
+            <h2>Seu Baralho</h2>
+            <div className="filter__container">
+              <label htmlFor="name-filter">
+                {' '}
+                Filtrar por nome
+                <input
+                  type="text"
+                  name="filterQuery"
+                  data-testid="name-filter"
+                  id="name-filter"
+                  onChange={ this.handleNameFilter }
+                  disabled={ filterTrunfo }
+                />
+              </label>
+              <label htmlFor="rare-filter">
+                Filtrar por tipo
+                <select
+                  name="filterRarity"
+                  id="rare-filter"
+                  data-testid="rare-filter"
+                  onChange={ this.handleRareFilter }
+                  disabled={ filterTrunfo }
+                >
+                  <option value="todas">todas</option>
+                  <option value="normal">normal</option>
+                  <option value="raro">raro</option>
+                  <option value="muito raro">muito raro</option>
+                </select>
+              </label>
+              <label htmlFor="trunfo-filter">
+                Super Trunfo
+                <input
+                  type="checkbox"
+                  name="filterTrunfo"
+                  id="trunfo-filter"
+                  data-testid="trunfo-filter"
+                  onChange={ this.handleTrunfoFilter }
+                />
+              </label>
+            </div>
+            <section className="deck__container">
+              {filterTrunfo
+                ? savedCardsArr
+                  .filter(({ cardTrunfo: trunfo }) => trunfo === true)
+                  .map((el, index) => this.renderDeck(el, index))
+                : savedCardsArr
+                  .filter(
+                    ({ cardName: name, cardRare: rarity }) => name.toLowerCase().includes(filterQuery.toLowerCase())
+                        && filterRarity.some((el) => el === rarity),
+                  )
+                  .map((el, index) => this.renderDeck(el, index))}
+            </section>
+          </>
+        )}
       </div>
     );
   }
