@@ -43,28 +43,3 @@
   margin: 20px 0;
   width: 37%;
 }
-
-.save__button {
-  background-color: rgb(253, 0, 241);
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 0 8px black;
-  color: white;
-  font-size: 1rem;
-  margin: 10px;
-  padding: 10px;
-  transition: all 0.2s ease-in-out;
-}
-
-.save__button:hover {
-  cursor: pointer;
-  transform: scale(1.05);
-}
-
-.save__button:active {
-  transform: scale(1.05) translateY(3px);
-}
-
-.save__button:disabled {
-  background-color: gray;
-}

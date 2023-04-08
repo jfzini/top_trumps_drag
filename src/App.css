@@ -53,6 +53,12 @@ h3 {
   transform: scale(1.4) translateY(5px);
 }
 
+.flex__container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
 .filter__container {
   align-items: center;
   background-color: rgba(255, 0, 255, 0.377);
@@ -71,4 +77,29 @@ h3 {
   margin-left: 10px;
   padding: 5px 10px;
   resize: none;
+}
+
+.save__button {
+  background-color: rgb(253, 0, 241);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 8px black;
+  color: white;
+  font-size: 1rem;
+  margin: 10px;
+  padding: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.save__button:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.save__button:active {
+  transform: scale(1.05) translateY(3px);
+}
+
+.save__button:disabled {
+  background-color: gray;
 }

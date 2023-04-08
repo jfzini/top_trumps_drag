@@ -2,9 +2,10 @@ import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
 import './App.css';
+import './components/Form.css';
 import { validateText, validateAttr } from './helpers';
 import { dragData } from './data/data';
-import Game from './Game'
+import Game from './Game';
 
 class App extends React.Component {
   state = {
@@ -24,7 +25,7 @@ class App extends React.Component {
     filterRarity: ['normal', 'raro', 'muito raro'],
     filterTrunfo: false,
     deckEdit: false,
-    gameState: "Editar Deck"
+    gameState: 'Editar Deck',
   };
 
   componentDidMount() {
@@ -143,18 +144,18 @@ class App extends React.Component {
 
   editDeck = () => {
     const { deckEdit } = this.state;
-    if (!deckEdit) { 
-      this.setState(prevState => ({
+    if (!deckEdit) {
+      this.setState((prevState) => ({
         deckEdit: !prevState.deckEdit,
-        gameState: "Voltar ao Jogo"
-      }))
+        gameState: 'Voltar ao Jogo',
+      }));
     } else {
-      this.setState(prevState => ({
+      this.setState((prevState) => ({
         deckEdit: !prevState.deckEdit,
-        gameState: "Editar Deck"
-      }))
+        gameState: 'Editar Deck',
+      }));
     }
-  }
+  };
 
   render() {
     const {
@@ -180,9 +181,11 @@ class App extends React.Component {
     return (
       <div>
         <h1>Tryunfo Drag</h1>
-        <button onClick={ this.editDeck }>{gameState}</button>
+        <div className="flex__container">
+          <button onClick={ this.editDeck } className="save__button">{gameState}</button>
+        </div>
         {!deckEdit ? (
-          <Game cards={savedCardsArr}/>
+          <Game cards={ savedCardsArr } />
         ) : (
           <>
             <section className="creation__container">
