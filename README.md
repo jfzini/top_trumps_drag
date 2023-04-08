@@ -53,4 +53,4 @@ Check it deployed on: https://top-trumps-drag.vercel.app/
 Give a ⭐️ if this project helped you in any way!
 
 ***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+_Parts of this README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
