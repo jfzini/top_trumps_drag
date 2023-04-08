@@ -36,9 +36,9 @@ class App extends React.Component {
     this.setState({ [name]: value }, this.validateFields);
   };
 
-  handleClick = () => {
+  handleClick = async () => {
     const savedCard = this.state;
-    this.setState(({ savedCardsArr, cardTrunfo: prevCardTrunfo, hasTrunfo }) => ({
+    await this.setState(({ savedCardsArr, cardTrunfo: prevCardTrunfo, hasTrunfo }) => ({
       cardName: '',
       cardDescription: '',
       cardAttr1: '0',
@@ -52,6 +52,8 @@ class App extends React.Component {
       hasTrunfo: prevCardTrunfo ? true : hasTrunfo,
       savedCardsArr: [...savedCardsArr, savedCard],
     }));
+    const storageDeck = JSON.stringify(this.state.savedCardsArr);
+    localStorage.setItem('deck', storageDeck);
   };
 
   handleRemoveBtn = (index) => {
@@ -127,7 +129,6 @@ class App extends React.Component {
   );
 
   render() {
-    console.log(dragData);
     const {
       cardName,
       cardDescription,

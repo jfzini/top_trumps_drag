@@ -22,6 +22,26 @@ class Form extends Component {
     } = this.props;
 
     return (
+      <>
+      <section className='game__rules creation__form'>
+        <h3>Regras</h3>
+        <ol>
+          O jogo já possui um baralho previamente criado, porém você pode adicionar cartas personalizadas! Mas é necessário observar algumas regras:
+          <li>
+            Os atributos (Charisma, Uniqueness, Nerve e Talent) não podem possuir valores negativos.
+          </li>
+          <li>
+            O valor máximo de cada atributo é de 90 pontos.
+          </li>
+          <li>
+            A soma dos atributos não pode ser superior a 330, então mesmo o seu Super Trunfo não poderá ter o máximo de pontos em todos os atributos.
+          </li>
+          <li>
+            Só é permitido ter um Super Trunfo no baralho.
+          </li>
+        </ol>
+        Divirta-se!
+      </section>
       <form action="" className="container__column creation__form">
         <Input
           id="name-input"
@@ -122,6 +142,7 @@ class Form extends Component {
           Salvar
         </button>
       </form>
+      </>
     );
   }
 }

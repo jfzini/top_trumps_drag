@@ -241,4 +241,15 @@ export const dragData = [
     cardRare: 'normal',
     cardTrunfo: false,
   },
+  {
+    cardName: 'Roxxxy Andrews',
+    cardDescription: `"I know you love me, baby, that's why you brought me here"`,
+    cardAttr1: '55',
+    cardAttr2: '65',
+    cardAttr3: '70',
+    cardAttr4: '70',
+    cardImage: 'https://i.pinimg.com/originals/dd/b0/eb/ddb0eb7b5b8fe04fb342ac18b664176f.gif',
+    cardRare: 'raro',
+    cardTrunfo: false,
+  },
 ];

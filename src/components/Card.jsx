@@ -9,6 +9,32 @@ import tImage from '../images/t.png';
 import crownImage from '../images/crown.png';
 
 class Card extends Component {
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('keydown', this.handleScroll);
+    window.addEventListener('click', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('keydown', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    const elementsArr = document.querySelectorAll('.card__container');
+    const scrollPosition = window.scrollY + window.innerHeight;
+
+    elementsArr.forEach((element) => {
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      if (scrollPosition > elementPosition) {
+        element.classList.add('animated');
+      } else {
+        element.classList.remove('animated');
+      }
+    })
+  };
+
   render() {
     const {
       cardName,
