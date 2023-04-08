@@ -24,67 +24,37 @@ export default class Game extends Component {
 
   startGame = () => {
     this.shuffleDeck();
-    this.setState((prevState) => ({contestantsReady: !prevState.contestantsReady}));
+    this.setState((prevState) => ({contestantsReady: true}));
   }
 
   winner = (message, cond) => {
     this.setState({ play: "Play Again!", resolution: { msg: message, cond: cond }})
   }
 
-  fight = (attr) => {
-    
+  fight = (pAttr, cardAttr) => {
+    if (pAttr > cardAttr) {
+      this.winner("Shantay you stay", "win")
+    } else if (pAttr < cardAttr) {
+      this.winner("Sashay away", "lose")
+    } else {
+      this.winner("Shantay you both stay! <3", "draw")
+    }
   }
 
   compareAttr = (attrType, playerAttr) => {
     const { cardAttr1, cardAttr2, cardAttr3, cardAttr4 } = this.props.cards[1];
     switch (attrType) {
       case 'carisma':
-        if (playerAttr > cardAttr1) {
-          this.winner("Shantay you stay", "win")
-          break;
-        } else if (playerAttr < cardAttr1) {
-          this.winner("Sashay away", "lose")
-          break;
-        } else {
-          this.winner("Shantay you both stay! <3", "draw")
-          break;
-        }
+        this.fight(playerAttr, cardAttr1)
         break;
       case 'uniqueness':
-        if (playerAttr > cardAttr2) {
-          this.winner("Shantay you stay", "win")
-          break;
-        } else if (playerAttr < cardAttr2) {
-          this.winner("Sashay away", "lose")
-          break;
-        } else {
-          this.winner("Shantay you both stay! <3", "draw")
-          break;
-        }
+        this.fight(playerAttr, cardAttr2)
         break;
       case 'nerve':
-        if (playerAttr > cardAttr3) {
-          this.winner("Shantay you stay")
-          break;
-        } else if (playerAttr < cardAttr3) {
-          this.winner("Sashay away", "lose")
-          break;
-        } else {
-          this.winner("Shantay you both stay! <3", "draw")
-          break;
-        }
+        this.fight(playerAttr, cardAttr3)
         break;
       case 'talent':
-        if (playerAttr > cardAttr4) {
-          this.winner("Shantay you stay")
-          break;
-        } else if (playerAttr < cardAttr4) {
-          this.winner("Sashay away", "lose")
-          break;
-        } else {
-          this.winner("Shantay you both stay! <3", "draw")
-          break;
-        }
+        this.fight(playerAttr, cardAttr4)
         break;
       default:
         return 'Error: No drag queens found!';

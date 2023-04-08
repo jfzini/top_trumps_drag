@@ -23,6 +23,8 @@ class App extends React.Component {
     filterQuery: '',
     filterRarity: ['normal', 'raro', 'muito raro'],
     filterTrunfo: false,
+    deckEdit: false,
+    gameState: "Editar Deck"
   };
 
   componentDidMount() {
@@ -139,6 +141,21 @@ class App extends React.Component {
     </div>
   );
 
+  editDeck = () => {
+    const { deckEdit } = this.state;
+    if (!deckEdit) { 
+      this.setState(prevState => ({
+        deckEdit: !prevState.deckEdit,
+        gameState: "Voltar ao Jogo"
+      }))
+    } else {
+      this.setState(prevState => ({
+        deckEdit: !prevState.deckEdit,
+        gameState: "Editar Deck"
+      }))
+    }
+  }
+
   render() {
     const {
       cardName,
@@ -156,12 +173,15 @@ class App extends React.Component {
       filterQuery,
       filterRarity,
       filterTrunfo,
+      deckEdit,
+      gameState,
     } = this.state;
 
     return (
       <div>
         <h1>Tryunfo Drag</h1>
-        {true ? (
+        <button onClick={ this.editDeck }>{gameState}</button>
+        {!deckEdit ? (
           <Game cards={savedCardsArr}/>
         ) : (
           <>
