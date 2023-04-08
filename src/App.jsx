@@ -3,6 +3,7 @@ import Form from './components/Form';
 import Card from './components/Card';
 import './App.css';
 import { validateText, validateAttr } from './helpers';
+import { dragData } from './data/data';
 
 class App extends React.Component {
   state = {
@@ -15,9 +16,9 @@ class App extends React.Component {
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
-    hasTrunfo: false,
+    hasTrunfo: dragData.some(({ cardTrunfo }) => cardTrunfo === true),
     isSaveButtonDisabled: true,
-    savedCardsArr: [],
+    savedCardsArr: [...dragData],
     filterQuery: '',
     filterRarity: ['normal', 'raro', 'muito raro'],
     filterTrunfo: false,
@@ -126,6 +127,7 @@ class App extends React.Component {
   );
 
   render() {
+    console.log(dragData);
     const {
       cardName,
       cardDescription,
@@ -175,42 +177,47 @@ class App extends React.Component {
         </section>
         <h2>Seu Baralho</h2>
         <section className="deck__container">
-          <div>
+        <div className='filter__container'>
+          <label htmlFor="name-filter"> Filtrar por nome
+          <input
+            type="text"
+            name="filterQuery"
+            data-testid="name-filter"
+            id="name-filter"
+            onChange={ this.handleNameFilter }
+            disabled={ filterTrunfo }
+          />
+          </label>
+          <label htmlFor="rare-filter">Filtrar por tipo
+          <select
+            name="filterRarity"
+            id="rare-filter"
+            data-testid="rare-filter"
+            onChange={ this.handleRareFilter }
+            disabled={ filterTrunfo }
+          >
+            <option value="todas">todas</option>
+            <option value="normal">normal</option>
+            <option value="raro">raro</option>
+            <option value="muito raro">muito raro</option>
+          </select>
+          </label>
+          <label htmlFor="trunfo-filter">
+            Super Trunfo
             <input
-              type="text"
-              name="filterQuery"
-              data-testid="name-filter"
-              onChange={ this.handleNameFilter }
-              disabled={ filterTrunfo }
+              type="checkbox"
+              name="filterTrunfo"
+              id="trunfo-filter"
+              data-testid="trunfo-filter"
+              onChange={ this.handleTrunfoFilter }
             />
-            <select
-              name="filterRarity"
-              id="rare-filter"
-              data-testid="rare-filter"
-              onChange={ this.handleRareFilter }
-              disabled={ filterTrunfo }
-            >
-              <option value="todas">todas</option>
-              <option value="normal">normal</option>
-              <option value="raro">raro</option>
-              <option value="muito raro">muito raro</option>
-            </select>
-            <label htmlFor="trunfo-filter">
-              Super Trunfo
-              <input
-                type="checkbox"
-                name="filterTrunfo"
-                id="trunfo-filter"
-                data-testid="trunfo-filter"
-                onChange={ this.handleTrunfoFilter }
-              />
-            </label>
-          </div>
+          </label>
+        </div>
           { filterTrunfo
             ? (savedCardsArr.filter(({ cardTrunfo: trunfo }) => trunfo === true)
               .map((el, index) => this.renderDeck(el, index)))
             : (savedCardsArr.filter(({ cardName: name, cardRare: rarity }) => (
-              name.includes(filterQuery)
+              name.toLowerCase().includes(filterQuery.toLowerCase())
               && filterRarity.some((el) => el === rarity)))
               .map((el, index) => this.renderDeck(el, index)))}
         </section>
