@@ -7,7 +7,10 @@ export default class Game extends Component {
     isPlayer: true,
     play: "Play",
     contestantsReady: false,
-    resolution: '',
+    resolution: {
+      msg: "",
+      cond: ""
+    },
   };
   componentDidMount() {
     console.log('mount');
@@ -24,47 +27,63 @@ export default class Game extends Component {
     this.setState((prevState) => ({contestantsReady: !prevState.contestantsReady}));
   }
 
+  winner = (message, cond) => {
+    this.setState({ play: "Play Again!", resolution: { msg: message, cond: cond }})
+  }
+
+  fight = (attr) => {
+    
+  }
+
   compareAttr = (attrType, playerAttr) => {
     const { cardAttr1, cardAttr2, cardAttr3, cardAttr4 } = this.props.cards[1];
     switch (attrType) {
       case 'carisma':
         if (playerAttr > cardAttr1) {
-          this.setState({ resolution: 'Shantay you stay' });
+          this.winner("Shantay you stay", "win")
           break;
         } else if (playerAttr < cardAttr1) {
-          return 'Sashay away';
+          this.winner("Sashay away", "lose")
+          break;
         } else {
-          return 'Shantay you both stay! <3';
+          this.winner("Shantay you both stay! <3", "draw")
+          break;
         }
         break;
       case 'uniqueness':
         if (playerAttr > cardAttr2) {
-          this.setState({ resolution: 'Shantay you stay' });
+          this.winner("Shantay you stay", "win")
           break;
         } else if (playerAttr < cardAttr2) {
-          return 'Sashay away';
+          this.winner("Sashay away", "lose")
+          break;
         } else {
-          return 'Shantay you both stay! <3';
+          this.winner("Shantay you both stay! <3", "draw")
+          break;
         }
         break;
       case 'nerve':
         if (playerAttr > cardAttr3) {
-          this.setState({ resolution: 'Shantay you stay' });
+          this.winner("Shantay you stay")
           break;
         } else if (playerAttr < cardAttr3) {
-          return 'Sashay away';
+          this.winner("Sashay away", "lose")
+          break;
         } else {
-          return 'Shantay you both stay! <3';
+          this.winner("Shantay you both stay! <3", "draw")
+          break;
         }
         break;
       case 'talent':
         if (playerAttr > cardAttr4) {
-          this.setState({ resolution: 'Shantay you stay' });
+          this.winner("Shantay you stay")
           break;
         } else if (playerAttr < cardAttr4) {
-          return 'Sashay away';
+          this.winner("Sashay away", "lose")
+          break;
         } else {
-          return 'Shantay you both stay! <3';
+          this.winner("Shantay you both stay! <3", "draw")
+          break;
         }
         break;
       default:
@@ -101,6 +120,7 @@ export default class Game extends Component {
     console.log(cards[0], cards[1]);
     return (
       <>
+        <h1>{ this.state.resolution.msg }</h1>
         <button 
         onClick={() => this.startGame()}>{this.state.play}</button>
         <div className="game__container">
