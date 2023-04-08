@@ -42,7 +42,9 @@ All the animations were made entirely using CSS and components life cycle, no sp
 I'm currently working on the game itself, so the user can play against the machine. Watch this repository to keep track of it.
 
 ## Preview
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/cZjecnt" data-context="false" ><a href="//imgur.com/a/cZjecnt"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+
+https://user-images.githubusercontent.com/122232543/230743397-fde94dfc-7ac9-40f0-8db2-6771c2ae4e5c.mp4
+
 
 Check it deployed on: https://top-trumps-drag.vercel.app/
 
