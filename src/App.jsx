@@ -90,6 +90,18 @@ class App extends React.Component {
     }
   };
 
+
+  handleLoad = () => {
+    const parsedStoredDeck = JSON.parse(localStorage.getItem('deck'));
+    this.setState({
+      savedCardsArr: [...parsedStoredDeck]
+    })
+  }
+
+  componentDidMount () {
+    window.addEventListener('load', this.handleLoad)
+  }
+
   renderDeck = (
     {
       cardName: savedName,

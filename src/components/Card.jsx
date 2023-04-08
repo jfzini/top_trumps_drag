@@ -10,17 +10,6 @@ import crownImage from '../images/crown.png';
 
 class Card extends Component {
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
-    window.addEventListener('keydown', this.handleScroll);
-    window.addEventListener('click', this.handleScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
-    window.removeEventListener('keydown', this.handleScroll);
-  }
-
   handleScroll = () => {
     const elementsArr = document.querySelectorAll('.card__container');
     const scrollPosition = window.scrollY + window.innerHeight;
@@ -34,6 +23,17 @@ class Card extends Component {
       }
     })
   };
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('keydown', this.handleScroll);
+    window.addEventListener('click', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('keydown', this.handleScroll);
+  }
 
   render() {
     const {
