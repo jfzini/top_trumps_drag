@@ -24,11 +24,9 @@ class App extends React.Component {
     filterTrunfo: false,
   };
 
-  validateFields = () => {
-    const textFields = validateText(this.state);
-    const attrFields = validateAttr(this.state);
-    this.setState({ isSaveButtonDisabled: !(textFields && attrFields) });
-  };
+  componentDidMount() {
+    window.addEventListener('load', this.handleLoad);
+  }
 
   handleChange = ({ target }) => {
     const { name } = target;
@@ -38,6 +36,7 @@ class App extends React.Component {
 
   handleClick = async () => {
     const savedCard = this.state;
+    const { savedCardsArr: deck } = this.state;
     await this.setState(({ savedCardsArr, cardTrunfo: prevCardTrunfo, hasTrunfo }) => ({
       cardName: '',
       cardDescription: '',
@@ -52,7 +51,7 @@ class App extends React.Component {
       hasTrunfo: prevCardTrunfo ? true : hasTrunfo,
       savedCardsArr: [...savedCardsArr, savedCard],
     }));
-    const storageDeck = JSON.stringify(this.state.savedCardsArr);
+    const storageDeck = JSON.stringify(deck);
     localStorage.setItem('deck', storageDeck);
   };
 
@@ -90,17 +89,18 @@ class App extends React.Component {
     }
   };
 
-
   handleLoad = () => {
     const parsedStoredDeck = JSON.parse(localStorage.getItem('deck'));
     this.setState({
-      savedCardsArr: [...parsedStoredDeck]
-    })
-  }
+      savedCardsArr: [...parsedStoredDeck],
+    });
+  };
 
-  componentDidMount () {
-    window.addEventListener('load', this.handleLoad)
-  }
+  validateFields = () => {
+    const textFields = validateText(this.state);
+    const attrFields = validateAttr(this.state);
+    this.setState({ isSaveButtonDisabled: !(textFields && attrFields) });
+  };
 
   renderDeck = (
     {
@@ -189,31 +189,33 @@ class App extends React.Component {
           />
         </section>
         <h2>Seu Baralho</h2>
-        <section className="deck__container">
-        <div className='filter__container'>
-          <label htmlFor="name-filter"> Filtrar por nome
-          <input
-            type="text"
-            name="filterQuery"
-            data-testid="name-filter"
-            id="name-filter"
-            onChange={ this.handleNameFilter }
-            disabled={ filterTrunfo }
-          />
+        <div className="filter__container">
+          <label htmlFor="name-filter">
+            {' '}
+            Filtrar por nome
+            <input
+              type="text"
+              name="filterQuery"
+              data-testid="name-filter"
+              id="name-filter"
+              onChange={ this.handleNameFilter }
+              disabled={ filterTrunfo }
+            />
           </label>
-          <label htmlFor="rare-filter">Filtrar por tipo
-          <select
-            name="filterRarity"
-            id="rare-filter"
-            data-testid="rare-filter"
-            onChange={ this.handleRareFilter }
-            disabled={ filterTrunfo }
-          >
-            <option value="todas">todas</option>
-            <option value="normal">normal</option>
-            <option value="raro">raro</option>
-            <option value="muito raro">muito raro</option>
-          </select>
+          <label htmlFor="rare-filter">
+            Filtrar por tipo
+            <select
+              name="filterRarity"
+              id="rare-filter"
+              data-testid="rare-filter"
+              onChange={ this.handleRareFilter }
+              disabled={ filterTrunfo }
+            >
+              <option value="todas">todas</option>
+              <option value="normal">normal</option>
+              <option value="raro">raro</option>
+              <option value="muito raro">muito raro</option>
+            </select>
           </label>
           <label htmlFor="trunfo-filter">
             Super Trunfo
@@ -226,6 +228,7 @@ class App extends React.Component {
             />
           </label>
         </div>
+        <section className="deck__container">
           { filterTrunfo
             ? (savedCardsArr.filter(({ cardTrunfo: trunfo }) => trunfo === true)
               .map((el, index) => this.renderDeck(el, index)))
