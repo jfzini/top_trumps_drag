@@ -42,7 +42,9 @@ All the animations were made entirely using CSS and components life cycle, no sp
 I'm currently working on the game itself, so the user can play against the machine. Watch this repository to keep track of it.
 
 ## Preview
-<iframe src="https://imgur.com/8E5gGPr" title="description"></iframe>
+
+https://user-images.githubusercontent.com/122232543/230743397-fde94dfc-7ac9-40f0-8db2-6771c2ae4e5c.mp4
+
 
 Check it deployed on: https://top-trumps-drag.vercel.app/
 
@@ -51,4 +53,4 @@ Check it deployed on: https://top-trumps-drag.vercel.app/
 Give a ⭐️ if this project helped you in any way!
 
 ***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+_Parts of this README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
