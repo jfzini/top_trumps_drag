@@ -45,8 +45,32 @@ export default class Game extends Component {
         },
       }));
     } else {
-      this.setState({ resolution: { msg: 'FIM DE JOGO!' } });
+      this.setState({
+        play: 'Resetar jogo',
+        resolution: { msg: 'FIM DE JOGO!' },
+      });
     }
+  };
+
+  restartGame = () => {
+    this.shuffleDeck();
+    this.setState({
+      play: 'Play',
+      contestantsReady: false,
+      resolution: {
+        msg: 'Selecione uma categoria',
+        cond: '',
+      },
+      hideEnemyCard: true,
+      score: {
+        player: 0,
+        enemy: 0,
+      },
+      cards: {
+        playerCard: 0,
+        enemyCard: 1,
+      },
+    });
   };
 
   winner = (message, cond) => {
@@ -83,7 +107,8 @@ export default class Game extends Component {
 
   compareAttr = (attrType, playerAttr) => {
     const { cards } = this.props;
-    const { cardAttr1, cardAttr2, cardAttr3, cardAttr4 } = cards[1];
+    const { cards: { enemyCard } } = this.state;
+    const { cardAttr1, cardAttr2, cardAttr3, cardAttr4 } = cards[enemyCard];
     this.setState({
       hideEnemyCard: false,
     });
@@ -151,7 +176,7 @@ export default class Game extends Component {
         </div>
         <div className="flex__container">
           <button
-            onClick={ () => this.startGame() }
+            onClick={ play === 'Resetar jogo' ? this.restartGame : this.startGame }
             className="save__button play__button"
           >
             {play}
