@@ -47,11 +47,12 @@ class Card extends Component {
       cardTrunfo,
       isPlayer,
       compareAttr,
-      hideEnemyCard
+      hideEnemyCard,
+      disableButton,
     } = this.props;
 
     return (
-      <div className={"creation__form card__container"}>
+      <div className="creation__form card__container">
         <p data-testid="name-card" className="card__name">
           {cardName}
         </p>
@@ -64,21 +65,21 @@ class Card extends Component {
         <div className="card__attr--container">
           <button
             className="card__attr"
-            disabled={ !isPlayer }
+            disabled={ disableButton !== 'Selecione uma categoria' }
             onClick={ () => compareAttr('carisma', cardAttr1) }
           >
             <img src={ cImage } alt="charisma" className="card__attr--img" />
             <p data-testid="attr1-card">{cardAttr1}</p>
           </button>
-          <button className="card__attr" onClick={ () => compareAttr('uniqueness', cardAttr2) }>
+          <button disabled={ disableButton !== 'Selecione uma categoria' } className="card__attr" onClick={ () => compareAttr('uniqueness', cardAttr2) }>
             <img src={ uImage } alt="uniqueness" className="card__attr--img" />
             <p data-testid="attr2-card">{cardAttr2}</p>
           </button>
-          <button className="card__attr" onClick={ () => compareAttr('nerve', cardAttr3) }>
+          <button disabled={ disableButton !== 'Selecione uma categoria' } className="card__attr" onClick={ () => compareAttr('nerve', cardAttr3) }>
             <img src={ nImage } alt="nerve" className="card__attr--img" />
             <p data-testid="attr3-card">{cardAttr3}</p>
           </button>
-          <button className="card__attr" onClick={ () => compareAttr('talent', cardAttr4) }>
+          <button disabled={ disableButton !== 'Selecione uma categoria' } className="card__attr" onClick={ () => compareAttr('talent', cardAttr4) }>
             <img src={ tImage } alt="talent" className="card__attr--img" />
             <p>{cardAttr4}</p>
           </button>
@@ -89,7 +90,10 @@ class Card extends Component {
           </p>
         </div>
         {hideEnemyCard ? (
-          <div className='card-back'> <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmMxMjU5YjkzZTQ2NGY0ZmI3NDhlNTM2ZTcxNTkyOWEyOTNiZGY1YSZjdD1z/ftlFZndujzY1u5eTuX/giphy.gif" alt="" /></div>
+          <div className="card-back">
+            {' '}
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmMxMjU5YjkzZTQ2NGY0ZmI3NDhlNTM2ZTcxNTkyOWEyOTNiZGY1YSZjdD1z/ftlFZndujzY1u5eTuX/giphy.gif" alt="" />
+          </div>
         ) : null}
         {cardTrunfo ? (
           <div className="super-trunfo--container">

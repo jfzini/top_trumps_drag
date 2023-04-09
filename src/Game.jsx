@@ -7,7 +7,7 @@ export default class Game extends Component {
     play: 'Play',
     contestantsReady: false,
     resolution: {
-      msg: 'Selecione um atributo',
+      msg: 'Selecione uma categoria',
       cond: '',
     },
     hideEnemyCard: true,
@@ -24,7 +24,7 @@ export default class Game extends Component {
 
   startGame = () => {
     this.shuffleDeck();
-    this.setState({ contestantsReady: true, resolution: { msg: 'Selecione um atributo' }, hideEnemyCard: true });
+    this.setState({ contestantsReady: true, resolution: { msg: 'Selecione uma categoria' }, hideEnemyCard: true });
   };
 
   winner = (message, cond) => {
@@ -45,7 +45,7 @@ export default class Game extends Component {
     const { cardAttr1, cardAttr2, cardAttr3, cardAttr4 } = this.props.cards[1];
     this.setState({
       hideEnemyCard: false,
-    })
+    });
     switch (attrType) {
     case 'carisma':
       this.fight(playerAttr, cardAttr1);
@@ -67,7 +67,7 @@ export default class Game extends Component {
 
   render() {
     const { cards } = this.props;
-    const { isPlayer, hideEnemyCard } = this.state;
+    const { isPlayer, hideEnemyCard, play, contestantsReady, resolution: { msg, cond } } = this.state;
     const {
       cardName: pCardName,
       cardDescription: pCardDescription,
@@ -93,14 +93,16 @@ export default class Game extends Component {
 
     return (
       <>
-        <h1>{this.state.resolution.msg}</h1>
+        <div className="result">
+          <h2 className={ cond }>{msg}</h2>
+        </div>
         <div className="flex__container">
           <button onClick={ () => this.startGame() } className="save__button">
-            {this.state.play}
+            {play}
           </button>
         </div>
         <div className="flex__container">
-          {this.state.contestantsReady ? (
+          {contestantsReady ? (
             <>
               <Card
                 cardName={ pCardName }
@@ -114,6 +116,7 @@ export default class Game extends Component {
                 cardTrunfo={ pCardTrunfo }
                 isPlayer={ isPlayer }
                 compareAttr={ this.compareAttr }
+                disableButton={ msg }
               />
               <Card
                 cardName={ cardName }
@@ -126,7 +129,7 @@ export default class Game extends Component {
                 cardRare={ cardRare }
                 cardTrunfo={ cardTrunfo }
                 isPlayer={ !isPlayer }
-                hideEnemyCard= { hideEnemyCard }
+                hideEnemyCard={ hideEnemyCard }
               />
             </>
           ) : (

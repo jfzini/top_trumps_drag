@@ -22,6 +22,10 @@
   position: relative;
 }
 
+.card__container button:hover {
+  cursor: pointer;
+}
+
 .card__name {
   align-items: center;
   background-color: white;
@@ -80,11 +84,26 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 300px;
+  width: 330px;
 }
 
 .card__attr--img {
   width: 40px;
+}
+
+.draw {
+  background-color: magenta;
+  color: rgb(0, 255, 115);
+}
+
+.lose {
+  animation: slideDown 1s linear , appear 1s linear;
+  background-color: rgba(255, 0, 0, 0.459);
+}
+
+.result {
+  height: 300px;
+  overflow: hidden;
 }
 
 .super-trunfo--container {
@@ -155,10 +174,16 @@
   position: absolute;
   top: -9px;
   width: 420px;
+  z-index: 3;
 }
 
 .card-back img {
   height: 200px;
+}
+
+.win {
+  animation: scaling 2s ease-in-out infinite;
+  background-color: gold;
 }
 
 @keyframes appear {
@@ -185,6 +210,30 @@
 
   to {
     transform: translateY(0);
+  }
+
+}
+
+@keyframes slideDown {
+
+  from {
+    transform: translateY(-30px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+
+}
+
+@keyframes scaling {
+
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
   }
 
 }
