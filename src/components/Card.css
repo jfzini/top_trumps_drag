@@ -42,8 +42,13 @@
   position: relative;
 }
 
+.card__container button {
+  transition: all 0.3s ease-in-out;
+}
+
 .card__container button:hover {
   cursor: pointer;
+  transform: scale(1.1);
 }
 
 .card__name {

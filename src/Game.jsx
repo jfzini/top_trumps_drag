@@ -184,18 +184,7 @@ export default class Game extends Component {
         </div>
         <div>
           {contestantsReady ? (
-            <div className="flex__container">
-              <div>
-                <p>Placar:</p>
-                <p>
-                  Jogador(a):
-                  {player}
-                </p>
-                <p>
-                  Computador:
-                  {enemy}
-                </p>
-              </div>
+            <div className="game__board">
               <Card
                 cardName={ pCardName }
                 cardDescription={ pCardDescription }
@@ -209,6 +198,17 @@ export default class Game extends Component {
                 compareAttr={ this.compareAttr }
                 disableButton={ msg }
               />
+              <div className="score__board">
+                <p className="score__board--header">Placar:</p>
+                <p className="score__board--player">
+                  Jogador(a):
+                  {` ${player}`}
+                </p>
+                <p className="score__board--enemy">
+                  Computador:
+                  {` ${enemy}`}
+                </p>
+              </div>
               <Card
                 cardName={ cardName }
                 cardDescription={ cardDescription }
@@ -232,8 +232,8 @@ export default class Game extends Component {
             O jogo já possui um baralho previamente criado, porém você pode adicionar
             cartas personalizadas clicando no botão &quot;Editar Deck&quot; acima!
             <li>
-              Escolha um atributo (Charisma, Uniqueness Nerve ou Talent) de sua carta,
-              virada para cima. O valor deste atributo será comparado ao da
+              Clique sobre um atributo (Charisma, Uniqueness Nerve ou Talent) de sua carta
+              (virada para cima). O valor deste atributo será comparado ao da
               carta oponente, virada para baixo.
             </li>
             <li>O valor máximo que um atributo pode ter é 90.</li>
