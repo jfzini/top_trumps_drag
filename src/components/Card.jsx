@@ -7,6 +7,7 @@ import uImage from '../images/u.png';
 import nImage from '../images/n.png';
 import tImage from '../images/t.png';
 import crownImage from '../images/crown.png';
+import cardBack from '../images/card-back.gif';
 
 class Card extends Component {
   componentDidMount() {
@@ -45,11 +46,12 @@ class Card extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      isPlayer,
       compareAttr,
       hideEnemyCard,
       disableButton,
     } = this.props;
+
+    const defaultMsg = 'Selecione uma categoria';
 
     return (
       <div className="creation__form card__container">
@@ -57,7 +59,12 @@ class Card extends Component {
           {cardName}
         </p>
         <div className="card__img--container">
-          <img src={ cardImage } alt={ cardName } data-testid="image-card" className="card__img" />
+          <img
+            src={ cardImage }
+            alt={ cardName }
+            data-testid="image-card"
+            className="card__img"
+          />
         </div>
         <p data-testid="description-card" className="card__description">
           {cardDescription}
@@ -65,21 +72,33 @@ class Card extends Component {
         <div className="card__attr--container">
           <button
             className="card__attr"
-            disabled={ disableButton !== 'Selecione uma categoria' }
+            disabled={ disableButton !== defaultMsg }
             onClick={ () => compareAttr('carisma', cardAttr1) }
           >
             <img src={ cImage } alt="charisma" className="card__attr--img" />
             <p data-testid="attr1-card">{cardAttr1}</p>
           </button>
-          <button disabled={ disableButton !== 'Selecione uma categoria' } className="card__attr" onClick={ () => compareAttr('uniqueness', cardAttr2) }>
+          <button
+            disabled={ disableButton !== defaultMsg }
+            className="card__attr"
+            onClick={ () => compareAttr('uniqueness', cardAttr2) }
+          >
             <img src={ uImage } alt="uniqueness" className="card__attr--img" />
             <p data-testid="attr2-card">{cardAttr2}</p>
           </button>
-          <button disabled={ disableButton !== 'Selecione uma categoria' } className="card__attr" onClick={ () => compareAttr('nerve', cardAttr3) }>
+          <button
+            disabled={ disableButton !== defaultMsg }
+            className="card__attr"
+            onClick={ () => compareAttr('nerve', cardAttr3) }
+          >
             <img src={ nImage } alt="nerve" className="card__attr--img" />
             <p data-testid="attr3-card">{cardAttr3}</p>
           </button>
-          <button disabled={ disableButton !== 'Selecione uma categoria' } className="card__attr" onClick={ () => compareAttr('talent', cardAttr4) }>
+          <button
+            disabled={ disableButton !== defaultMsg }
+            className="card__attr"
+            onClick={ () => compareAttr('talent', cardAttr4) }
+          >
             <img src={ tImage } alt="talent" className="card__attr--img" />
             <p>{cardAttr4}</p>
           </button>
@@ -91,8 +110,7 @@ class Card extends Component {
         </div>
         {hideEnemyCard ? (
           <div className="card-back">
-            {' '}
-            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmMxMjU5YjkzZTQ2NGY0ZmI3NDhlNTM2ZTcxNTkyOWEyOTNiZGY1YSZjdD1z/ftlFZndujzY1u5eTuX/giphy.gif" alt="" />
+            <img src={ cardBack } alt="" />
           </div>
         ) : null}
         {cardTrunfo ? (
@@ -111,13 +129,22 @@ class Card extends Component {
 export default Card;
 
 Card.propTypes = {
-  cardName: PropTypes.string.isRequired,
-  cardDescription: PropTypes.string.isRequired,
   cardAttr1: PropTypes.string.isRequired,
   cardAttr2: PropTypes.string.isRequired,
   cardAttr3: PropTypes.string.isRequired,
   cardAttr4: PropTypes.string.isRequired,
+  cardDescription: PropTypes.string.isRequired,
   cardImage: PropTypes.string.isRequired,
+  cardName: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
+  compareAttr: PropTypes.func,
+  disableButton: PropTypes.string,
+  hideEnemyCard: PropTypes.bool,
+};
+
+Card.defaultProps = {
+  compareAttr: null,
+  disableButton: null,
+  hideEnemyCard: null,
 };

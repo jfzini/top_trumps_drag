@@ -78,7 +78,9 @@ class App extends React.Component {
   };
 
   handleRareFilter = ({ target }) => {
-    const value = target.value === 'todas' ? ['normal', 'raro', 'muito raro'] : [target.value];
+    const value = target.value === 'todas'
+      ? ['normal', 'raro', 'muito raro']
+      : [target.value];
     this.setState({ filterRarity: value });
   };
 
@@ -263,7 +265,8 @@ class App extends React.Component {
                   .map((el, index) => this.renderDeck(el, index))
                 : savedCardsArr
                   .filter(
-                    ({ cardName: name, cardRare: rarity }) => name.toLowerCase().includes(filterQuery.toLowerCase())
+                    ({ cardName: name, cardRare: rarity }) => name.toLowerCase()
+                      .includes(filterQuery.toLowerCase())
                         && filterRarity.some((el) => el === rarity),
                   )
                   .map((el, index) => this.renderDeck(el, index))}

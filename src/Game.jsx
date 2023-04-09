@@ -1,9 +1,9 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Card from './components/Card';
 
 export default class Game extends Component {
   state = {
-    isPlayer: true,
     play: 'Play',
     contestantsReady: false,
     resolution: {
@@ -19,12 +19,16 @@ export default class Game extends Component {
 
   shuffleDeck = () => {
     const { cards } = this.props;
-    cards.sort(() => Math.random() - 0.5);
+    const magicNumber = 0.5;
+    cards.sort(() => Math.random() - magicNumber);
   };
 
   startGame = () => {
     this.shuffleDeck();
-    this.setState({ contestantsReady: true, resolution: { msg: 'Selecione uma categoria' }, hideEnemyCard: true });
+    this.setState({
+      contestantsReady: true,
+      resolution: { msg: 'Selecione uma categoria' },
+      hideEnemyCard: true });
   };
 
   winner = (message, cond) => {
@@ -42,7 +46,8 @@ export default class Game extends Component {
   };
 
   compareAttr = (attrType, playerAttr) => {
-    const { cardAttr1, cardAttr2, cardAttr3, cardAttr4 } = this.props.cards[1];
+    const { cards } = this.props;
+    const { cardAttr1, cardAttr2, cardAttr3, cardAttr4 } = cards[1];
     this.setState({
       hideEnemyCard: false,
     });
@@ -61,13 +66,17 @@ export default class Game extends Component {
       break;
     default:
       return 'Error: No drag queens found!';
-      break;
     }
   };
 
   render() {
     const { cards } = this.props;
-    const { isPlayer, hideEnemyCard, play, contestantsReady, resolution: { msg, cond } } = this.state;
+    const {
+      hideEnemyCard,
+      play,
+      contestantsReady,
+      resolution: { msg, cond },
+    } = this.state;
     const {
       cardName: pCardName,
       cardDescription: pCardDescription,
@@ -97,7 +106,10 @@ export default class Game extends Component {
           <h2 className={ cond }>{msg}</h2>
         </div>
         <div className="flex__container">
-          <button onClick={ () => this.startGame() } className="save__button">
+          <button
+            onClick={ () => this.startGame() }
+            className="save__button play__button"
+          >
             {play}
           </button>
         </div>
@@ -114,7 +126,6 @@ export default class Game extends Component {
                 cardImage={ pCardImage }
                 cardRare={ pCardRare }
                 cardTrunfo={ pCardTrunfo }
-                isPlayer={ isPlayer }
                 compareAttr={ this.compareAttr }
                 disableButton={ msg }
               />
@@ -128,7 +139,6 @@ export default class Game extends Component {
                 cardImage={ cardImage }
                 cardRare={ cardRare }
                 cardTrunfo={ cardTrunfo }
-                isPlayer={ !isPlayer }
                 hideEnemyCard={ hideEnemyCard }
               />
             </>
@@ -140,3 +150,9 @@ export default class Game extends Component {
     );
   }
 }
+
+Game.propTypes = {
+  cards: PropTypes.shape({
+    sort: PropTypes.func,
+  }).isRequired,
+};
