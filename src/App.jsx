@@ -273,6 +273,9 @@ class App extends React.Component {
             </section>
           </>
         )}
+        <footer>
+          Developed by João Zini ©
+        </footer>
       </div>
     );
   }
