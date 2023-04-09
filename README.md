@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to Top trumps Drag 🌈 👑</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.1-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.2-blue.svg?cacheSeconds=2592000" />
   <img src="https://img.shields.io/badge/node-16%20%7C%7C%2018-blue.svg" />
 </p>
 
@@ -45,6 +45,9 @@ I'm currently working on the game itself, so the user can play against the machi
 
 https://user-images.githubusercontent.com/122232543/230743397-fde94dfc-7ac9-40f0-8db2-6771c2ae4e5c.mp4
 
+1.0.2 - Added simplistic playability 
+
+https://user-images.githubusercontent.com/122232543/230753363-b5119696-14b7-4367-b3aa-0fc18eb81e82.mp4
 
 Check it deployed on: https://top-trumps-drag.vercel.app/
 
