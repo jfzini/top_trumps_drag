@@ -7,7 +7,7 @@ export default class Game extends Component {
     play: 'Play',
     contestantsReady: false,
     resolution: {
-      msg: 'Selecione uma categoria',
+      msg: 'Clique em Play para iniciar o jogo',
       cond: '',
     },
     hideEnemyCard: true,
@@ -58,7 +58,7 @@ export default class Game extends Component {
       play: 'Play',
       contestantsReady: false,
       resolution: {
-        msg: 'Selecione uma categoria',
+        msg: 'Clique em Play para iniciar o jogo',
         cond: '',
       },
       hideEnemyCard: true,
@@ -74,7 +74,7 @@ export default class Game extends Component {
   };
 
   winner = (message, cond) => {
-    this.setState({ play: 'Play Again!', resolution: { msg: message, cond } });
+    this.setState({ play: 'Próxima Carta', resolution: { msg: message, cond } });
   };
 
   fight = (pAttr, cardAttr) => {
@@ -95,7 +95,7 @@ export default class Game extends Component {
         },
       }));
     } else {
-      this.winner('Shantay you both stay! <3', 'draw');
+      this.winner('Shantay you both stay!', 'draw');
       this.setState((prevState) => ({
         score: {
           player: prevState.score.player + 1,
@@ -171,8 +171,8 @@ export default class Game extends Component {
 
     return (
       <>
-        <div className="result">
-          <h2 className={ cond }>{msg}</h2>
+        <div className={ cond }>
+          <h2>{msg}</h2>
         </div>
         <div className="flex__container">
           <button
@@ -260,8 +260,6 @@ Game.propTypes = {
     cardImage: PropTypes.string.isRequired,
     cardRare: PropTypes.string.isRequired,
     cardTrunfo: PropTypes.bool.isRequired,
-    hasTrunfo: PropTypes.bool.isRequired,
-    isSaveButtonDisabled: PropTypes.bool.isRequired,
     savedCardsArr: PropTypes.arrayOf(PropTypes.shape({
       cardAttr1: PropTypes.string.isRequired,
       cardAttr2: PropTypes.string.isRequired,
@@ -275,11 +273,6 @@ Game.propTypes = {
       compareAttr: PropTypes.func,
       disableButton: PropTypes.string,
       hideEnemyCard: PropTypes.bool,
-    })).isRequired,
-    filterQuery: PropTypes.string.isRequired,
-    filterRarity: PropTypes.arrayOf(PropTypes.string).isRequired,
-    filterTrunfo: PropTypes.bool.isRequired,
-    deckEdit: PropTypes.bool.isRequired,
-    gameState: PropTypes.string.isRequired,
+    })),
   })).isRequired,
 };

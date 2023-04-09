@@ -182,7 +182,9 @@ class App extends React.Component {
 
     return (
       <div>
-        <h1>Tryunfo Drag</h1>
+        <header>
+          <h1>Tryunfo Drag</h1>
+        </header>
         <div className="flex__container">
           <button onClick={ this.editDeck } className="save__button">{gameState}</button>
         </div>

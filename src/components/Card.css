@@ -19,17 +19,17 @@
   border-radius: 20px;
   box-shadow: 2px 2px 10px black , inset 0 0 3px rgb(7, 0, 17);
   display: flex;
-  height: 660px;
+  height: 530px;
   justify-content: center;
   padding: 20px;
   position: absolute;
   top: -9px;
-  width: 420px;
+  width: 330px;
   z-index: 3;
 }
 
 .card-back img {
-  height: 200px;
+  height: 160px;
 }
 
 .card__container {
@@ -52,8 +52,8 @@
   border-radius: 20px;
   box-shadow: 2px 2px 5px black;
   display: flex;
-  font-size: 1.2rem;
-  height: 40px;
+  font-size: 1rem;
+  height: 30px;
   justify-content: center;
   overflow: hidden;
   width: 100%;
@@ -63,15 +63,15 @@
   background-color: white;
   border-radius: 20px;
   box-shadow: 0 0 10px black;
-  height: 220px;
-  margin-top: 20px;
+  height: 192px;
+  margin-top: 10px;
   overflow: hidden;
   text-align: center;
   width: 100%;
 }
 
 .card__img {
-  height: 220px;
+  height: 192px;
 }
 
 .card__description {
@@ -82,7 +82,7 @@
   display: flex;
   height: 80px;
   justify-content: center;
-  margin: 20px 0;
+  margin: 10px 0;
   padding: 10px;
   text-align: center;
   width: 100%;
@@ -108,26 +108,22 @@
 }
 
 .card__attr--img {
-  width: 40px;
+  width: 30px;
 }
 
-.draw {
-  background-color: magenta;
+.draw h2 {
+  animation: scaling 2s ease-in-out infinite;
   color: rgb(0, 255, 115);
 }
 
-.lose {
+.lose h2 {
   animation: slideDown 1s linear , appear 1s linear;
-  background-color: rgba(255, 0, 0, 0.459);
+  color: rgba(255, 0, 0, 0.719);
 }
 
 .result {
   height: 300px;
   overflow: hidden;
-}
-
-.play__button {
-  margin: -20px ! important;
 }
 
 .super-trunfo--container {
@@ -136,64 +132,66 @@
   background-color: rgb(255, 145, 0);
   box-shadow: inset 0 0 3px black;
   display: flex;
-  height: 100px;
+  font-size: 1rem;
+  height: 60px;
   justify-content: center;
-  margin-top: 30px;
-  width: 404px;
+  margin-top: 20px;
+  width: 314px;
 }
 
 .super-trunfo {
   border-radius: 50%;
-  box-shadow: 0 0 20px gold , 0 0 20px gold , 0 0 20px gold;
+  box-shadow: 0 0 10px gold , 0 0 10px gold , 0 0 10px gold;
   margin-right: 30px;
-  width: 60px;
+  width: 40px;
 }
 
 .normal {
   background-image: var(--green-gradient);
   color: white;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-bottom: -10px;
   margin-top: 10px;
   padding: 2px;
   text-align: center;
   transition: all 0.2s linear;
-  width: 404px;
+  width: 314px;
 }
 
 .raro {
   background-image: var(--blue-gradient);
   color: white;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-bottom: -10px;
   margin-top: 10px;
   padding: 5px;
   text-align: center;
   transition: all 0.2s linear;
-  width: 404px;
+  width: 314px;
 }
 
 .muito {
   background-image: var(--purple-gradient);
   color: white;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-bottom: -10px;
   margin-top: 10px;
   padding: 7px;
   text-align: center;
   transition: all 0.2s linear;
-  width: 404px;
+  width: 314px;
 }
 
-.win {
+.win h2 {
   animation: scaling 2s ease-in-out infinite;
-  background-color: gold;
+  color: gold ! important;
 }
 
 @keyframes appear {
 
   0% {
     opacity: 0;
+    scale: (0.8);
   }
 
   50% {
@@ -202,6 +200,7 @@
 
   100% {
     opacity: 1;
+    scale: (0.8);
   }
 
 }
