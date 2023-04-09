@@ -46,6 +46,7 @@ footer {
   border-radius: 50%;
   box-shadow: 0 0 5px black;
   display: flex;
+  margin-bottom: 40px;
   padding: 5px;
   transform: scale(1.2);
   transition: all 0.3s ease-in-out;
@@ -95,14 +96,14 @@ footer {
 }
 
 .game__rules {
-  background-color: rgba(255, 255, 255, 0.473);
-  border: 2px solid black;
+  background-color: rgba(255, 255, 255, 0.753);
   border-radius: 20px;
+  box-shadow: 2px 2px 15px black;
   display: flex;
   flex-direction: column;
-  margin: 100px auto 0;
+  margin: 30px auto 15px;
   padding: 20px;
-  width: min(80%, 800px);
+  width: min(80%, 480px);
 }
 
 .play__button {
@@ -118,7 +119,7 @@ footer {
   box-shadow: 0 0 8px black;
   color: white;
   font-size: 1rem;
-  margin: 10px;
+  margin: 10px 0 40px;
   padding: 10px;
   transition: all 0.2s ease-in-out;
 }

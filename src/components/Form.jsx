@@ -22,9 +22,9 @@ class Form extends Component {
     } = this.props;
 
     return (
-      <>
-        <section className="game__rules creation__form">
-          <h3>Regras</h3>
+      <div className="container__row">
+        <section className="game__rules">
+          <h3>Regras de Criação</h3>
           <ol>
             O jogo já possui um baralho previamente criado, porém você pode adicionar
             cartas personalizadas! Mas é necessário observar algumas regras:
@@ -148,7 +148,7 @@ class Form extends Component {
             Salvar
           </button>
         </form>
-      </>
+      </div>
     );
   }
 }

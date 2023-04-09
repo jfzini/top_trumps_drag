@@ -18,3 +18,11 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.container__row {
+  display: flex;
+  height: 600px;
+  width: min(1400px, 60%);
+  justify-content: space-around;
+  align-items: start;
+}

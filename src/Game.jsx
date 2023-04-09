@@ -227,7 +227,7 @@ export default class Game extends Component {
           )}
         </div>
         <section className="game__rules">
-          <h3>Regras</h3>
+          <h3>Regras do Jogo</h3>
           <ol>
             O jogo já possui um baralho previamente criado, porém você pode adicionar
             cartas personalizadas clicando no botão &quot;Editar Deck&quot; acima!
