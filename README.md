@@ -45,9 +45,17 @@ I'm currently working on the game itself, so the user can play against the machi
 
 https://user-images.githubusercontent.com/122232543/230743397-fde94dfc-7ac9-40f0-8db2-6771c2ae4e5c.mp4
 
+
+
 1.0.2 - Added simplistic playability 
 
 https://user-images.githubusercontent.com/122232543/230753363-b5119696-14b7-4367-b3aa-0fc18eb81e82.mp4
+
+
+1.0.3 - Added score board, no card repetition and reset game button at the end
+
+https://user-images.githubusercontent.com/122232543/230798020-9122f95d-c992-4b59-bbd4-0442c5251588.mov
+
 
 Check it deployed on: https://top-trumps-drag.vercel.app/
 
