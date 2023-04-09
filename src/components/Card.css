@@ -142,6 +142,25 @@
   width: 404px;
 }
 
+.card-back {
+  align-items: center;
+  background-color: rgb(78, 49, 95);
+  border: 8px solid rgb(253, 0, 241);
+  border-radius: 20px;
+  box-shadow: 2px 2px 10px black , inset 0 0 3px rgb(7, 0, 17);
+  display: flex;
+  height: 660px;
+  justify-content: center;
+  padding: 20px;
+  position: absolute;
+  top: -9px;
+  width: 420px;
+}
+
+.card-back img {
+  height: 200px;
+}
+
 @keyframes appear {
 
   0% {

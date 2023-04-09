@@ -10,11 +10,10 @@ export default class Game extends Component {
       msg: 'Selecione um atributo',
       cond: '',
     },
-    hidden: 'hidden'
+    hideEnemyCard: true,
   };
 
   componentDidMount() {
-    console.log('mount');
     this.shuffleDeck();
   }
 
@@ -25,7 +24,7 @@ export default class Game extends Component {
 
   startGame = () => {
     this.shuffleDeck();
-    this.setState({ contestantsReady: true, resolution: { msg: 'Selecione um atributo' } });
+    this.setState({ contestantsReady: true, resolution: { msg: 'Selecione um atributo' }, hideEnemyCard: true });
   };
 
   winner = (message, cond) => {
@@ -44,6 +43,9 @@ export default class Game extends Component {
 
   compareAttr = (attrType, playerAttr) => {
     const { cardAttr1, cardAttr2, cardAttr3, cardAttr4 } = this.props.cards[1];
+    this.setState({
+      hideEnemyCard: false,
+    })
     switch (attrType) {
     case 'carisma':
       this.fight(playerAttr, cardAttr1);
@@ -65,7 +67,7 @@ export default class Game extends Component {
 
   render() {
     const { cards } = this.props;
-    const { isPlayer, hidden, resolution: { cond } } = this.state;
+    const { isPlayer, hideEnemyCard } = this.state;
     const {
       cardName: pCardName,
       cardDescription: pCardDescription,
@@ -88,7 +90,7 @@ export default class Game extends Component {
       cardRare,
       cardTrunfo,
     } = cards[1];
-    console.log(cards[0], cards[1]);
+
     return (
       <>
         <h1>{this.state.resolution.msg}</h1>
@@ -124,7 +126,7 @@ export default class Game extends Component {
                 cardRare={ cardRare }
                 cardTrunfo={ cardTrunfo }
                 isPlayer={ !isPlayer }
-                enemyClasses={ hidden , cond }
+                hideEnemyCard= { hideEnemyCard }
               />
             </>
           ) : (

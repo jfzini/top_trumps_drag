@@ -47,10 +47,11 @@ class Card extends Component {
       cardTrunfo,
       isPlayer,
       compareAttr,
+      hideEnemyCard
     } = this.props;
 
     return (
-      <div className="creation__form card__container">
+      <div className={"creation__form card__container"}>
         <p data-testid="name-card" className="card__name">
           {cardName}
         </p>
@@ -87,6 +88,9 @@ class Card extends Component {
             {cardRare}
           </p>
         </div>
+        {hideEnemyCard ? (
+          <div className='card-back'> <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmMxMjU5YjkzZTQ2NGY0ZmI3NDhlNTM2ZTcxNTkyOWEyOTNiZGY1YSZjdD1z/ftlFZndujzY1u5eTuX/giphy.gif" alt="" /></div>
+        ) : null}
         {cardTrunfo ? (
           <div className="super-trunfo--container">
             <img src={ crownImage } alt="super-trunfo" className="super-trunfo" />
