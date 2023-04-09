@@ -1,10 +1,19 @@
 <h1 align="center">Welcome to Top trumps Drag 🌈 👑</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.2-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.3-blue.svg?cacheSeconds=2592000" />
   <img src="https://img.shields.io/badge/node-16%20%7C%7C%2018-blue.svg" />
 </p>
 
 > Top trumps card game made with react starring drag queens!
+
+## Preview
+
+1.0.3 - Added score board, no card repetition and reset game button at the end
+
+https://user-images.githubusercontent.com/122232543/230798020-9122f95d-c992-4b59-bbd4-0442c5251588.mov
+
+
+Check it deployed on: https://top-trumps-drag.vercel.app/
 
 
 <h2 align='center'>If you want to clone this repository keep in mind these dependencies:</h2>
@@ -41,23 +50,6 @@ All the animations were made entirely using CSS and components life cycle, no sp
 
 I'm currently working on the game itself, so the user can play against the machine. Watch this repository to keep track of it.
 
-## Preview
-
-https://user-images.githubusercontent.com/122232543/230743397-fde94dfc-7ac9-40f0-8db2-6771c2ae4e5c.mp4
-
-
-
-1.0.2 - Added simplistic playability 
-
-https://user-images.githubusercontent.com/122232543/230753363-b5119696-14b7-4367-b3aa-0fc18eb81e82.mp4
-
-
-1.0.3 - Added score board, no card repetition and reset game button at the end
-
-https://user-images.githubusercontent.com/122232543/230798020-9122f95d-c992-4b59-bbd4-0442c5251588.mov
-
-
-Check it deployed on: https://top-trumps-drag.vercel.app/
 
 ## Show your support
 
