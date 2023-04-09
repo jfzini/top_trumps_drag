@@ -14,6 +14,10 @@ export default class Game extends Component {
     score: {
       player: 0,
       enemy: 0,
+    },
+    cards: {
+      playerCard: 0,
+      enemyCard: 1,
     }
   };
 
@@ -28,12 +32,22 @@ export default class Game extends Component {
   };
 
   startGame = () => {
-    this.shuffleDeck();
-    this.setState({
-      contestantsReady: true,
-      resolution: { msg: 'Selecione uma categoria' },
-      hideEnemyCard: true,
-    });
+    const { cards } = this.props;
+    const {cards: { enemyCard }} = this.state;
+    if (enemyCard < cards.length - 2) {
+      this.setState(prevState => ({
+        contestantsReady: true,
+        resolution: { msg: 'Selecione uma categoria' },
+        hideEnemyCard: true,
+        cards: {
+          playerCard: prevState.cards.playerCard + 2,
+          enemyCard: prevState.cards.enemyCard + 2,
+        }
+      }));
+    } else {
+      this.setState({resolution: { msg: 'FIM DE JOGO!' }})
+    }
+
   };
 
   winner = (message, cond) => {
@@ -102,6 +116,10 @@ export default class Game extends Component {
       score: {
         player,
         enemy,
+      },
+      cards: {
+        playerCard,
+        enemyCard,
       }
     } = this.state;
     const {
@@ -114,7 +132,7 @@ export default class Game extends Component {
       cardImage: pCardImage,
       cardRare: pCardRare,
       cardTrunfo: pCardTrunfo,
-    } = cards[0];
+    } = cards[playerCard];
     const {
       cardName,
       cardDescription,
@@ -125,7 +143,7 @@ export default class Game extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
-    } = cards[1];
+    } = cards[enemyCard];
 
     return (
       <>
