@@ -6,14 +6,12 @@
 
 > Top trumps card game made with react starring drag queens!
 
-## Preview
+## <a href="https://top-trumps-drag.vercel.app/" target="_blank">Demo</a>
 
 1.0.3 - Added score board, no card repetition and reset game button at the end
 
 https://user-images.githubusercontent.com/122232543/230798020-9122f95d-c992-4b59-bbd4-0442c5251588.mov
 
-
-Check it deployed on: https://top-trumps-drag.vercel.app/
 
 
 <h2 align='center'>If you want to clone this repository keep in mind these dependencies:</h2>
