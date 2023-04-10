@@ -13,9 +13,6 @@
 https://user-images.githubusercontent.com/122232543/230798020-9122f95d-c992-4b59-bbd4-0442c5251588.mov
 
 
-
-<h2 align='center'>If you want to clone this repository keep in mind these dependencies:</h2>
-
 ## Prerequisites
 
 - node 16 || 18
